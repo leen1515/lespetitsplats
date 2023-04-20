@@ -1,0 +1,96 @@
+@use "utils" as u;
+
+body {
+  margin: auto;
+  padding:50px;
+}
+
+header{
+    text-align: center;
+}
+.logo{
+    margin:auto;
+}
+.recipes-contain {
+}
+
+.recipes-article {
+  font-size: small;
+  line-height: 17px;
+  margin-bottom: 40px;
+}
+
+.img-parent {
+  background-color: u.$greyDark;
+  margin: auto;
+  height: 170px;
+  width:100%;
+}
+
+.description-recipe {
+  margin: auto;
+  background-color: u.$greyLight;
+  padding: 20px;
+}
+
+.description-header {
+  font-size: medium;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 !important;
+}
+
+.header__time-contain {
+  font-size: large;
+  font-weight: 700;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.time {
+}
+
+.body-description {
+}
+
+.body-ingredient {
+  height: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.body-indication {
+  height: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.ingredientsContain{
+
+}
+.ingredient{
+white-space: nowrap;
+width:auto;
+font-weight:700;
+margin:0;
+padding:0 !important;
+}
+.quantity{
+
+    margin:0;
+    padding:0 0 0 5px !important;
+}
+.unit{
+
+    margin:0;
+    padding:0 0 0 5px !important;
+}
