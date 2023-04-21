@@ -24,12 +24,105 @@ header {
 .searchbar-contain input {
   background-color: transparent;
   border: none;
+  outline: none;
 }
 
 .searchbar-contain button {
   background-color: transparent;
   border: none;
   margin: 0 !important;
+}
+
+.select-contain {
+  width: 40%;
+  margin: 0 !important;
+  gap: 20px;
+}
+
+.tag-ingredient {
+  background-color: #3282F7;
+  border-radius: 5px;
+}
+
+.tag-appareils {
+  background-color: #68D9A4;
+  border-radius: 5px;
+}
+
+.tag-ustensiles {
+  background-color: #ED6454;
+  border-radius: 5px;
+}
+
+.option-contain-ingredient {
+  width: auto;
+  height: auto;
+  padding: 15px 25px 15px 15px;
+}
+
+.option-contain-appareils {
+  width: auto;
+  height: auto;
+  padding: 15px 25px 15px 15px;
+}
+
+.option-contain-ustensiles {
+  width: auto;
+  height: auto;
+  padding: 15px 25px 15px 15px;
+}
+
+.option-contain-ingredient input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.input-icone-contain {
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
+}
+
+.icone-position {
+  position: relative;
+  right: 30px;
+  color: #FFFFFF;
+}
+
+.option-contain-appareils input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.option-contain-ustensiles input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.option-contain-ingredient input::placeholder {
+  color: #FFFFFF;
+  opacity: 1;
+  font-weight: 700;
+}
+
+.option-contain-appareils input::placeholder {
+  color: #FFFFFF;
+  opacity: 1;
+  font-weight: 700;
+}
+
+.option-contain-ustensiles input::placeholder {
+  color: #FFFFFF;
+  opacity: 1;
+  font-weight: 700;
 }
 
 .recipes-article {

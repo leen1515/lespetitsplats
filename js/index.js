@@ -5,6 +5,7 @@ import { IngredientsFactory } from './IngredientsFactory.js'
 export async function getRecipes () {
   const recipesArray = recipes
   const allRecipes = document.querySelector('.recipes-contain')
+
   recipesArray.forEach((recipe) => {
     const { id, name, ingredients, time, description } = recipe
     const cardsIngredients = []
