@@ -11,6 +11,26 @@ header{
 .logo{
     margin:auto;
 }
+
+.searchbar-contain{
+margin:auto;
+width:100%;
+background-color: u.$greyLight;
+margin: 0 !important;
+padding: 10px;
+border-radius: 5px;
+}
+
+.searchbar-contain input{
+background-color: transparent;
+border:none;
+}
+.searchbar-contain button{
+  background-color: transparent;
+  border:none;
+  margin: 0 !important;
+  }
+
 .recipes-contain {
 }
 
@@ -18,6 +38,7 @@ header{
   font-size: small;
   line-height: 17px;
   margin-bottom: 40px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .img-parent {
@@ -25,6 +46,7 @@ header{
   margin: auto;
   height: 170px;
   width:100%;
+  border-radius: 5px 5px 0px 0px;
 }
 
 .description-recipe {
