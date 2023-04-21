@@ -57,19 +57,19 @@ header {
 .option-contain-ingredient {
   width: auto;
   height: auto;
-  padding: 15px 25px 15px 15px;
+  padding: 25px 25px 25px 25px;
 }
 
 .option-contain-appareils {
   width: auto;
   height: auto;
-  padding: 15px 25px 15px 15px;
+  padding: 25px 25px 25px 25px;
 }
 
 .option-contain-ustensiles {
   width: auto;
   height: auto;
-  padding: 15px 25px 15px 15px;
+  padding: 25px 25px 25px 25px;
 }
 
 .option-contain-ingredient input {
@@ -89,6 +89,7 @@ header {
   position: relative;
   right: 30px;
   color: #FFFFFF;
+  cursor: pointer;
 }
 
 .option-contain-appareils input {

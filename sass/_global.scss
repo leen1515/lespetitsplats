@@ -2,118 +2,118 @@
 
 body {
   margin: auto;
-  padding:50px;
+  padding: 50px;
 }
 
-header{
-    text-align: center;
+header {
+  text-align: center;
 }
-.logo{
-    margin:auto;
-}
-
-.searchbar-contain{
-margin:auto;
-width:100%;
-background-color: u.$greyLight;
-margin: 0 !important;
-padding: 10px;
-border-radius: 5px;
+.logo {
+  margin: auto;
 }
 
-.searchbar-contain input{
-background-color: transparent;
-border:none;
-outline: none;
-}
-.searchbar-contain button{
-  background-color: transparent;
-  border:none;
+.searchbar-contain {
+  margin: auto;
+  width: 100%;
+  background-color: u.$greyLight;
   margin: 0 !important;
-  }
-
-
-.select-contain{
-width:40%;
-margin:0 !important;
-gap:20px;
-
+  padding: 10px;
+  border-radius: 5px;
 }
 
-.tag-ingredient{
-background-color: u.$blue;
-border-radius: 5px;
+.searchbar-contain input {
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
-.tag-appareils{
+.searchbar-contain button {
+  background-color: transparent;
+  border: none;
+  margin: 0 !important;
+}
+
+.select-contain {
+  width: 40%;
+  margin: 0 !important;
+  gap: 20px;
+}
+
+.tag-ingredient {
+  background-color: u.$blue;
+  border-radius: 5px;
+}
+.tag-appareils {
   background-color: u.$green;
   border-radius: 5px;
 }
-.tag-ustensiles{
+.tag-ustensiles {
   background-color: u.$orange;
   border-radius: 5px;
 }
-.option-contain-ingredient{
+.option-contain-ingredient {
   width: auto;
-  height:auto;
-  padding:15px 25px 15px 15px;}
-.option-contain-appareils{
-  width:auto;
-  height:auto;
-  padding:15px 25px 15px 15px;}
-.option-contain-ustensiles{
-  width:auto;
-  height:auto;
-  padding:15px 25px 15px 15px;
-} 
-.option-contain-ingredient input{
+  height: auto;
+  padding: 25px 25px 25px 25px;
+}
+.option-contain-appareils {
+  width: auto;
+  height: auto;
+  padding: 25px 25px 25px 25px;
+}
+.option-contain-ustensiles {
+  width: auto;
+  height: auto;
+  padding: 25px 25px 25px 25px;
+}
+.option-contain-ingredient input {
   background-color: transparent;
-  border:none;
-  outline:none;
-  color:u.$light;
-  font-weight: 700;
-}
-
-.input-icone-contain{
-white-space: nowrap;
-flex-wrap: nowrap !important;
-}
-.icone-position{
-  position: relative;
-  right:30px;
+  border: none;
+  outline: none;
   color: u.$light;
-  
-}
-.option-contain-appareils input{
-  background-color: transparent;
-  border:none;
-  outline:none;
-  color:u.$light;
-  font-weight: 700;
-}
-.option-contain-ustensiles input{
-  background-color: transparent;
-  border:none;
-  outline:none;
-  color:u.$light;
   font-weight: 700;
 }
 
-.option-contain-ingredient input::placeholder{
-color:u.$light;
-opacity:1;
-font-weight: 700;
+.input-icone-contain {
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
 }
-.option-contain-appareils input::placeholder{
-  color:u.$light;
-  opacity:1;
-  
-font-weight: 700;
+.icone-position {
+  position: relative;
+  right: 30px;
+  color: u.$light;
+  cursor: pointer;
 }
-.option-contain-ustensiles input::placeholder{
-  color:u.$light;
-  opacity:1;
-  
-font-weight: 700;
+.option-contain-appareils input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: u.$light;
+  font-weight: 700;
+}
+.option-contain-ustensiles input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: u.$light;
+  font-weight: 700;
+}
+
+.option-contain-ingredient input::placeholder {
+  color: u.$light;
+  opacity: 1;
+  font-weight: 700;
+}
+.option-contain-appareils input::placeholder {
+  color: u.$light;
+  opacity: 1;
+
+  font-weight: 700;
+}
+.option-contain-ustensiles input::placeholder {
+  color: u.$light;
+  opacity: 1;
+
+  font-weight: 700;
 }
 
 .recipes-contain {
@@ -130,7 +130,7 @@ font-weight: 700;
   background-color: u.$greyDark;
   margin: auto;
   height: 170px;
-  width:100%;
+  width: 100%;
   border-radius: 5px 5px 0px 0px;
 }
 
@@ -181,23 +181,20 @@ font-weight: 700;
   -webkit-box-orient: vertical;
 }
 
-.ingredientsContain{
-
+.ingredientsContain {
 }
-.ingredient{
-white-space: nowrap;
-width:auto;
-font-weight:700;
-margin:0;
-padding:0 !important;
+.ingredient {
+  white-space: nowrap;
+  width: auto;
+  font-weight: 700;
+  margin: 0;
+  padding: 0 !important;
 }
-.quantity{
-
-    margin:0;
-    padding:0 0 0 5px !important;
+.quantity {
+  margin: 0;
+  padding: 0 0 0 5px !important;
 }
-.unit{
-
-    margin:0;
-    padding:0 0 0 5px !important;
+.unit {
+  margin: 0;
+  padding: 0 0 0 5px !important;
 }
