@@ -37,10 +37,16 @@ header {
   margin: 0 !important;
   gap: 20px;
 }
-
+.tag-contain{
+  gap:30px;
+  min-height:30px;
+  margin:30px;
+}
 .tag-ingredient {
   background-color: u.$blue;
-  border-radius: 5px;
+  border-radius: 5px;  
+  color:u.$light;
+  font-weight: 700;
 }
 .tag-appareils {
   background-color: u.$green;
@@ -50,6 +56,12 @@ header {
   background-color: u.$orange;
   border-radius: 5px;
 }
+
+.option-ingredients{
+  width:auto;
+}
+
+
 .option-contain-ingredient {
   width: auto;
   height: auto;

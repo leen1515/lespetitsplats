@@ -34,7 +34,6 @@ export class RecipesFactory {
     bodyRecipe.setAttribute('class', 'body-description row')
     ingredientsRecipe.setAttribute('class', 'body-ingredient col-6')
     indicationRecipe.setAttribute('class', 'body-indication col-6')
-    console.log(this.cardsIngredients)
     h2Recipe.textContent = this.name
     timeRecipe.textContent = this.time
     new Array(this.cardsIngredients)[0].forEach((ingredient) => { ingredientsRecipe.appendChild(ingredient) })

@@ -39,9 +39,17 @@ header {
   gap: 20px;
 }
 
+.tag-contain {
+  gap: 30px;
+  min-height: 30px;
+  margin: 30px;
+}
+
 .tag-ingredient {
   background-color: #3282F7;
   border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: 700;
 }
 
 .tag-appareils {
@@ -52,6 +60,10 @@ header {
 .tag-ustensiles {
   background-color: #ED6454;
   border-radius: 5px;
+}
+
+.option-ingredients {
+  width: auto;
 }
 
 .option-contain-ingredient {
