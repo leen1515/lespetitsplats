@@ -18,3 +18,15 @@ export function doubleDatas (datas) {
 
   return oneData
 }
+
+export function appendChildTags (elementTag) {
+  const tagContain = document.querySelector('.tag-contain')
+  const iconeCross = document.createElement('i')
+  iconeCross.setAttribute('class', 'fa-regular fa-circle-xmark')
+  elementTag.appendChild(iconeCross)
+  tagContain.appendChild(elementTag)
+}
+export function removeChildTags (elementTag) {
+  const tagContain = document.querySelector('.tag-contain')
+  tagContain.removeChild(elementTag)
+}

@@ -8,7 +8,9 @@ export function interactionTagListener (datasIngredients, datasAppliances, dataU
 
   inputIngredientTag.addEventListener('input', (e) => {
     const word = e.target.value
-    tagContainOptionIngredient.appendChild(new TagFactory(datasIngredients).tagDiv())
+    datasIngredients.forEach((dataIngredient) => {
+      tagContainOptionIngredient.appendChild(new TagFactory(dataIngredient).tagDiv())
+    })
     if (word.length >= 3) {
       if (tagContainOptionIngredient !== null) { tagContainOptionIngredient.innerHTML = '' }
       console.log('input', word)
