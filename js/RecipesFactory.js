@@ -23,7 +23,7 @@ export class RecipesFactory {
     const indicationRecipe = document.createElement('div')
 
     articleRecipe.setAttribute('id', this.id)
-    articleRecipe.setAttribute('class', 'recipes-article col-4')
+    articleRecipe.setAttribute('class', 'recipes-article')
     imgContainRecipe.setAttribute('class', 'img-parent')
     descriptionRecipe.setAttribute('class', 'description-recipe')
     headRecipe.setAttribute('class', 'description-header row')

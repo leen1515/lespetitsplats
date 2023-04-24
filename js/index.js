@@ -1,21 +1,25 @@
 import { recipes } from './recipes.js'
 import { RecipesFactory } from './RecipesFactory.js'
 import { IngredientsFactory } from './IngredientsFactory.js'
-import { interactionTagListener } from './listener.js'
+import { interactionTagListener, interactionSearchListener } from './listener.js'
 import { doubleDatas, caseFirstLetter } from './utilsfunction.js'
+
+export const allTags = []
 
 export async function getRecipes () {
   const recipesArray = recipes
   const allRecipes = document.querySelector('.recipes-contain')
 
   const ingredientsArray = []
-  const applianceArray = []
+  const appliancesArray = []
   const ustensilsArray = []
   recipesArray.forEach((recipe) => {
     const { id, name, ingredients, time, description, appliance, ustensils } = recipe
     const cardsIngredients = []
-    applianceArray.push(appliance)
-    ustensilsArray.push(ustensils)
+    appliancesArray.push(appliance)
+    ustensils.forEach((ustensil) => {
+      ustensilsArray.push(ustensil)
+    })
 
     ingredients.forEach((ingredientUnique) => {
       const { ingredient, quantity, unit } = ingredientUnique
@@ -26,10 +30,11 @@ export async function getRecipes () {
     allRecipes.appendChild(cardsRecipes)
   })
   const oneDatasIngredients = doubleDatas(ingredientsArray)
-  const oneDatasAppliance = doubleDatas(applianceArray)
+  const oneDatasAppliances = doubleDatas(appliancesArray)
   const oneDatasUstensils = doubleDatas(ustensilsArray)
 
-  interactionTagListener(oneDatasIngredients, oneDatasAppliance, oneDatasUstensils)
+  interactionTagListener(oneDatasIngredients, oneDatasAppliances, oneDatasUstensils)
+  interactionSearchListener()
 }
 
 getRecipes()

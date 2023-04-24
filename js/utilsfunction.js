@@ -1,9 +1,26 @@
 export function matchRegex (word, datas) {
   const searchUser = new RegExp(word, 'gi')
-  console.log('dataavant', datas)
   const filteredDatas = datas.filter((data) => data.match(searchUser))
-  console.log('filterDatas', filteredDatas)
   return filteredDatas
+}
+
+export function matchRegexText (word, text) {
+  const searchUser = new RegExp(word, 'gi')
+  const filteredText = searchUser.test(text.innerText)
+  return filteredText
+}
+
+export function matchRegexTagText (tagList, classDiv) {
+  let filteredText = 0
+  if (tagList !== null) {
+    tagList.forEach((tag) => {
+      const tagUser = new RegExp(tag, 'gi')
+      if (!tagUser.test(classDiv.innerText)) {
+        filteredText += 1
+      }
+    })
+  }
+  if (filteredText === 0) { return true } else { return false }
 }
 
 export function caseFirstLetter (letter) {

@@ -4,6 +4,10 @@ body {
   padding: 50px;
 }
 
+.hidden {
+  display: none;
+}
+
 header {
   text-align: center;
 }
@@ -34,7 +38,9 @@ header {
 }
 
 .select-contain {
-  width: 40%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
   margin: 0 !important;
   gap: 20px;
 }
@@ -49,25 +55,46 @@ header {
   background-color: #3282F7;
   border-radius: 5px;
   color: #FFFFFF;
-  font-weight: 700;
+  font-weight: 400;
 }
 
-.tag-appareils {
+.tag-appareil {
   background-color: #68D9A4;
   border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: 400;
 }
 
-.tag-ustensiles {
+.tag-ustensile {
   background-color: #ED6454;
   border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: 400;
 }
 
 .option-ingredients {
   width: auto;
+  height: auto !important;
+  display: grid !important;
+  grid-template-columns: auto auto auto !important;
+}
+
+.option-appareils {
+  width: auto !important;
+  height: auto !important;
+  display: grid !important;
+  grid-template-columns: auto auto auto !important;
+}
+
+.option-ustensiles {
+  width: auto !important;
+  height: auto !important;
+  display: grid !important;
+  grid-template-columns: auto auto auto !important;
 }
 
 .option-contain-ingredient {
-  width: auto;
+  width: 600px;
   height: auto;
   padding: 25px 25px 25px 25px;
 }
@@ -138,11 +165,19 @@ header {
   font-weight: 700;
 }
 
+.recipes-contain {
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 0 5% !important;
+  grid-template-columns: 30% 30% 30% !important;
+  grid-auto-rows: auto;
+}
+
 .recipes-article {
   font-size: small;
   line-height: 17px;
-  margin-bottom: 40px;
   border-radius: 5px 5px 0px 0px;
+  margin: 20px auto;
 }
 
 .img-parent {
@@ -155,8 +190,9 @@ header {
 
 .description-recipe {
   margin: auto;
+  height: 200px;
   background-color: #E7E7E7;
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 .description-header {

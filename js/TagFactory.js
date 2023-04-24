@@ -1,35 +1,57 @@
 import { appendChildTags, removeChildTags } from './utilsfunction.js'
+import { allTags } from './index.js'
 export class TagFactory {
-  constructor (tagIngredients, tagAppareils, tagUstensiles) {
-    this.tagIngredients = tagIngredients
-    this.tagAppareils = tagAppareils
-    this.tagUstensiles = tagUstensiles
+  tagDivIngredient (tagIngredients) {
+    let clickCheck = false
+    const divTagIngredient = document.createElement('div')
+    divTagIngredient.setAttribute('class', 'tag-ingredient tag col-sm-auto')
+    divTagIngredient.textContent = tagIngredients
+    divTagIngredient.addEventListener('click', () => {
+      if (!clickCheck) {
+        appendChildTags(divTagIngredient); clickCheck = true
+        allTags.push(tagIngredients)
+      } else {
+        removeChildTags(divTagIngredient); clickCheck = false
+        const indexTagRemove = allTags.indexOf(tagIngredients)
+        allTags.splice(indexTagRemove, 1)
+      }
+    })
+    return divTagIngredient
   }
 
-  tagDiv () {
+  tagDivAppliance (tagAppliance) {
     let clickCheck = false
-    if (this.tagIngredients) {
-      const divTagIngredient = document.createElement('div')
-      divTagIngredient.setAttribute('class', 'tag-ingredient col-sm-auto')
-      divTagIngredient.textContent = this.tagIngredients
-      divTagIngredient.addEventListener('click', () => {
-        if (!clickCheck) {
-          appendChildTags(divTagIngredient); clickCheck = true
-        } else { removeChildTags(divTagIngredient); clickCheck = false }
-      })
-      return divTagIngredient
-    }
-    if (this.tagAppareils) {
-      const divTagAppareil = document.createElement('div')
-      divTagAppareil.setAttribute('class', 'tag-appareil')
-      divTagAppareil.textContent = this.tagAppareils
-      return divTagAppareil
-    }
-    if (this.tagUstensiles) {
-      const divTagUstensile = document.createElement('div')
-      divTagUstensile.setAttribute('class', 'tag-ustensile')
-      divTagUstensile.textContent = this.tagUstensiles
-      return divTagUstensile
-    }
+    const divTagAppliance = document.createElement('div')
+    divTagAppliance.setAttribute('class', 'tag-appareil tag col-sm-auto')
+    divTagAppliance.textContent = tagAppliance
+    divTagAppliance.addEventListener('click', () => {
+      if (!clickCheck) {
+        appendChildTags(divTagAppliance); clickCheck = true
+        allTags.push(tagAppliance)
+      } else {
+        removeChildTags(divTagAppliance); clickCheck = false
+        const indexTagRemove = allTags.indexOf(tagAppliance)
+        allTags.splice(indexTagRemove, 1)
+      }
+    })
+    return divTagAppliance
+  }
+
+  tagDivUstensil (tagUstensiles) {
+    let clickCheck = false
+    const divTagUstensile = document.createElement('div')
+    divTagUstensile.setAttribute('class', 'tag-ustensile tag col-sm-auto')
+    divTagUstensile.textContent = tagUstensiles
+    divTagUstensile.addEventListener('click', () => {
+      if (!clickCheck) {
+        appendChildTags(divTagUstensile); clickCheck = true
+        allTags.push(tagUstensiles)
+      } else {
+        removeChildTags(divTagUstensile); clickCheck = false
+        const indexTagRemove = allTags.indexOf(tagUstensiles)
+        allTags.splice(indexTagRemove, 1)
+      }
+    })
+    return divTagUstensile
   }
 }
