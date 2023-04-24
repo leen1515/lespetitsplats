@@ -16,7 +16,7 @@ export function matchRegexTagText (tagList, classDiv) {
     tagList.forEach((tag) => {
       const tagUser = new RegExp(tag, 'gi')
       if (!tagUser.test(classDiv.innerText)) {
-        filteredText += 1
+        filteredText++
       }
     })
   }

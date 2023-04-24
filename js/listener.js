@@ -59,6 +59,7 @@ export function interactionTagListener (datasIngredients, datasAppliances, datas
 export function interactionSearchListener () {
   const searchBarInput = document.querySelector('#global-searchbar')
   const allArticles = document.querySelectorAll('.recipes-article')
+  const buttonValiadateSearch = document.querySelector('#searchValidate')
 
   searchBarInput.addEventListener('input', (e) => {
     const word = e.target.value
@@ -76,5 +77,21 @@ export function interactionSearchListener () {
         }
       })
     }
+  })
+
+  buttonValiadateSearch.addEventListener('click', (e) => {
+    const word = e.target.value
+    allArticles.forEach((elementArticle) => {
+      const articleClass = 'recipes-article'
+      if (matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle)) {
+        elementArticle.className = articleClass
+      } else if (matchRegexText(word, elementArticle) && !matchRegexTagText(allTags, elementArticle)) {
+        elementArticle.className = articleClass + ' hidden'
+      } else if (!matchRegexText(word, elementArticle) && !matchRegexTagText(allTags, elementArticle)) {
+        elementArticle.className = articleClass + ' hidden'
+      } else if (!matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle)) {
+        elementArticle.className = articleClass + ' hidden'
+      }
+    })
   })
 }
