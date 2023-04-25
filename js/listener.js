@@ -1,10 +1,7 @@
-import { matchRegex, matchRegexText, matchRegexTagText } from './utilsfunction.js'
+import { matchRegex, arrayTextContentDiv, trigDisplayArticlesFiltred } from './utilsfunction.js'
 import { TagFactory } from './TagFactory.js'
-import { allTags } from './index.js'
-// import { RecipesFactory } from './RecipesFactory.js'
-// import { IngredientsFactory } from './IngredientsFactory.js'
 
-export function interactionTagListener (datasIngredients, datasAppliances, datasUstensils) {
+export function interactionTagListener () {
   const inputIngredientTag = document.querySelector('#input-ingredients-tag')
   const inputAppliancesTag = document.querySelector('#input-appareils-tag')
   const inputUstensilsTag = document.querySelector('#input-ustensiles-tag')
@@ -18,80 +15,48 @@ export function interactionTagListener (datasIngredients, datasAppliances, datas
 
   inputIngredientTag.addEventListener('input', (e) => {
     const word = e.target.value
-    datasIngredients.forEach((dataIngredient) => {
-      tagContainOptionIngredient.appendChild(new TagFactory().tagDivIngredient(dataIngredient))
+    if (tagContainOptionIngredient !== null) { tagContainOptionIngredient.innerHTML = '' }
+    const recipesDisplay = document.querySelectorAll('article:not(.hidden)')
+    const ingredientUpdateArray = arrayTextContentDiv(recipesDisplay, '.ingredient')
+    matchRegex(word, ingredientUpdateArray).forEach((wordIngredientTag) => {
+      tagContainOptionIngredient.appendChild(new TagFactory().tagDivIngredient(wordIngredientTag))
     })
-    if (word.length >= 3) {
-      if (tagContainOptionIngredient !== null) { tagContainOptionIngredient.innerHTML = '' }
-      matchRegex(word, datasIngredients).forEach((wordIngredientTag) => {
-        tagContainOptionIngredient.appendChild(new TagFactory().tagDivIngredient(wordIngredientTag))
-      })
-    }
   })
 
   inputAppliancesTag.addEventListener('input', (e) => {
     const word = e.target.value
-    datasAppliances.forEach((dataAppliance) => {
-      tagContainOptionAppliance.appendChild(new TagFactory().tagDivAppliance(dataAppliance))
+    if (tagContainOptionAppliance !== null) { tagContainOptionAppliance.innerHTML = '' }
+    const recipesDisplay = document.querySelectorAll('article:not(.hidden)')
+    const applianceUpdateArray = arrayTextContentDiv(recipesDisplay, '.appliance')
+    matchRegex(word, applianceUpdateArray).forEach((wordApplianceTag) => {
+      tagContainOptionAppliance.appendChild(new TagFactory().tagDivAppliance(wordApplianceTag))
     })
-    if (word.length >= 3) {
-      if (tagContainOptionIngredient !== null) { tagContainOptionIngredient.innerHTML = '' }
-      matchRegex(word, datasAppliances).forEach((wordIngredientTag) => {
-        tagContainOptionAppliance.appendChild(new TagFactory().tagDivAppliance(wordIngredientTag))
-      })
-    }
   })
 
   inputUstensilsTag.addEventListener('input', (e) => {
     const word = e.target.value
-    datasUstensils.forEach((dataUstensil) => {
-      tagContainOptionUstensil.appendChild(new TagFactory().tagDivUstensil(dataUstensil))
+    if (tagContainOptionUstensil !== null) { tagContainOptionUstensil.innerHTML = '' }
+    const recipesDisplay = document.querySelectorAll('article:not(.hidden)')
+    const ustensilsUpdateArray = arrayTextContentDiv(recipesDisplay, '.ustensil')
+    matchRegex(word, ustensilsUpdateArray).forEach((wordUstensilTag) => {
+      tagContainOptionUstensil.appendChild(new TagFactory().tagDivUstensil(wordUstensilTag))
     })
-    if (word.length >= 3) {
-      if (tagContainOptionUstensil !== null) { tagContainOptionUstensil.innerHTML = '' }
-      matchRegex(word, datasUstensils).forEach((wordUstensilTag) => {
-        tagContainOptionUstensil.appendChild(new TagFactory().tagDivUstensil(wordUstensilTag))
-      })
-    }
   })
 }
 
 export function interactionSearchListener () {
   const searchBarInput = document.querySelector('#global-searchbar')
-  const allArticles = document.querySelectorAll('.recipes-article')
-  const buttonValiadateSearch = document.querySelector('#searchValidate')
+  const buttonValidateSearch = document.querySelector('#searchValidate')
 
   searchBarInput.addEventListener('input', (e) => {
     const word = e.target.value
     if (word.length >= 3) {
-      allArticles.forEach((elementArticle) => {
-        const articleClass = 'recipes-article'
-        if (matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle)) {
-          elementArticle.className = articleClass
-        } else if (matchRegexText(word, elementArticle) && !matchRegexTagText(allTags, elementArticle)) {
-          elementArticle.className = articleClass + ' hidden'
-        } else if (!matchRegexText(word, elementArticle) && !matchRegexTagText(allTags, elementArticle)) {
-          elementArticle.className = articleClass + ' hidden'
-        } else if (!matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle)) {
-          elementArticle.className = articleClass + ' hidden'
-        }
-      })
+      trigDisplayArticlesFiltred(word)
     }
   })
 
-  buttonValiadateSearch.addEventListener('click', (e) => {
+  buttonValidateSearch.addEventListener('click', (e) => {
     const word = e.target.value
-    allArticles.forEach((elementArticle) => {
-      const articleClass = 'recipes-article'
-      if (matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle)) {
-        elementArticle.className = articleClass
-      } else if (matchRegexText(word, elementArticle) && !matchRegexTagText(allTags, elementArticle)) {
-        elementArticle.className = articleClass + ' hidden'
-      } else if (!matchRegexText(word, elementArticle) && !matchRegexTagText(allTags, elementArticle)) {
-        elementArticle.className = articleClass + ' hidden'
-      } else if (!matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle)) {
-        elementArticle.className = articleClass + ' hidden'
-      }
-    })
+    trigDisplayArticlesFiltred(word)
   })
 }

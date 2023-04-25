@@ -1,3 +1,5 @@
+import { allTags } from './index.js'
+
 export function matchRegex (word, datas) {
   const searchUser = new RegExp(word, 'gi')
   const filteredDatas = datas.filter((data) => data.match(searchUser))
@@ -6,21 +8,19 @@ export function matchRegex (word, datas) {
 
 export function matchRegexText (word, text) {
   const searchUser = new RegExp(word, 'gi')
-  const filteredText = searchUser.test(text.innerText)
-  return filteredText
+  const filteredTextDiv = searchUser.test(text.textContent)
+  return filteredTextDiv
 }
 
 export function matchRegexTagText (tagList, classDiv) {
-  let filteredText = 0
+  const numberFalse = []
   if (tagList !== null) {
     tagList.forEach((tag) => {
       const tagUser = new RegExp(tag, 'gi')
-      if (!tagUser.test(classDiv.innerText)) {
-        filteredText++
-      }
+      if (!tagUser.test(classDiv.textContent)) { numberFalse.push(1) } else { numberFalse.splice(-1) }
     })
   }
-  if (filteredText === 0) { return true } else { return false }
+  return numberFalse
 }
 
 export function caseFirstLetter (letter) {
@@ -46,4 +46,32 @@ export function appendChildTags (elementTag) {
 export function removeChildTags (elementTag) {
   const tagContain = document.querySelector('.tag-contain')
   tagContain.removeChild(elementTag)
+}
+
+export function arrayTextContentDiv (arrayDiv, className) {
+  const arrayTextContent = []
+  arrayDiv.forEach((div) => {
+    const divIngredients = div.querySelectorAll(className)
+    divIngredients.forEach((divIngredient) => {
+      arrayTextContent.push(caseFirstLetter(divIngredient.textContent))
+    }
+    )
+  })
+  return doubleDatas(arrayTextContent)
+}
+
+export function trigDisplayArticlesFiltred (word) {
+  const allArticles = document.querySelectorAll('.recipes-article')
+  allArticles.forEach((elementArticle) => {
+    const articleClass = 'recipes-article'
+    if (matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle).length === 0) {
+      elementArticle.className = articleClass
+    } else if (matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle).length !== 0) {
+      elementArticle.className = articleClass + ' hidden'
+    } else if (!matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle).length === 0) {
+      elementArticle.className = articleClass + ' hidden'
+    } else if (!matchRegexText(word, elementArticle) && matchRegexTagText(allTags, elementArticle).length !== 0) {
+      elementArticle.className = articleClass + ' hidden'
+    }
+  })
 }

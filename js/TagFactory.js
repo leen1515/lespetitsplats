@@ -1,5 +1,6 @@
-import { appendChildTags, removeChildTags } from './utilsfunction.js'
+import { appendChildTags, removeChildTags, trigDisplayArticlesFiltred } from './utilsfunction.js'
 import { allTags } from './index.js'
+
 export class TagFactory {
   tagDivIngredient (tagIngredients) {
     let clickCheck = false
@@ -15,6 +16,8 @@ export class TagFactory {
         const indexTagRemove = allTags.indexOf(tagIngredients)
         allTags.splice(indexTagRemove, 1)
       }
+      const searchBarInput = document.querySelector('#global-searchbar').value
+      trigDisplayArticlesFiltred(searchBarInput)
     })
     return divTagIngredient
   }
@@ -33,6 +36,8 @@ export class TagFactory {
         const indexTagRemove = allTags.indexOf(tagAppliance)
         allTags.splice(indexTagRemove, 1)
       }
+      const searchBarInput = document.querySelector('#global-searchbar').value
+      trigDisplayArticlesFiltred(searchBarInput)
     })
     return divTagAppliance
   }
@@ -51,6 +56,8 @@ export class TagFactory {
         const indexTagRemove = allTags.indexOf(tagUstensiles)
         allTags.splice(indexTagRemove, 1)
       }
+      const searchBarInput = document.querySelector('#global-searchbar').value
+      trigDisplayArticlesFiltred(searchBarInput)
     })
     return divTagUstensile
   }
