@@ -8,7 +8,7 @@ export class TagFactory {
 
   tagDiv () {
     let classTag
-    switch (this.typeTag) {
+    switch (this.tagType) {
       case 'ingredients':
         classTag = 'tag-ingredient'
         break

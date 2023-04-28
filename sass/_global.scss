@@ -46,8 +46,13 @@ header {
 .tag-contain{
   gap:30px;
   min-height:30px;
-  margin:30px;
+  padding: 20px 10px;
 }
+
+.tag{
+
+}
+
 .tag-ingredient {
   background-color: u.$blue;
   border-radius: 5px;  
@@ -68,38 +73,47 @@ header {
 }
 
 .option-ingredients{
+  display:none;
+  background-color: u.$blue;
   width:auto;
   height:auto!important;
-  display: grid!important;
   grid-template-columns: auto auto auto!important;
 }
 
 .option-appareils{
+  
+  display:none;
+  background-color: u.$green;
   width:auto!important;
   height:auto!important;
-  display: grid!important;
+  position:relative;
   grid-template-columns: auto auto auto!important;
 }
 .option-ustensiles{
+  
+  display:none;
+  background-color: u.$orange;
+  position:relative;
   width:auto!important;
   height:auto!important;
-  display: grid!important;
   grid-template-columns: auto auto auto!important;
 }
 .option-contain-ingredient {
-  width:600px;
-  height: auto;
-  padding: 25px 25px 25px 25px;
+  
+  position:relative;
+  width:auto;
+  height: 60px;
+  padding: 15px 12px 15px 12px;
 }
 .option-contain-appareils {
   width: auto;
-  height: auto;
-  padding: 25px 25px 25px 25px;
+  height: 60px;
+  padding: 15px 12px 15px 12px;
 }
 .option-contain-ustensiles {
   width: auto;
-  height: auto;
-  padding: 25px 25px 25px 25px;
+  height: 60px;
+  padding: 15px 12px 15px 12px;
 }
 .option-contain-ingredient input {
   background-color: transparent;
@@ -110,12 +124,17 @@ header {
 }
 
 .input-icone-contain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
   white-space: nowrap;
   flex-wrap: nowrap !important;
 }
+.fa-x-position{
+  padding: 10px 0 10px 10px;
+}
 .icone-position {
-  position: relative;
-  right: 30px;
   color: u.$light;
   cursor: pointer;
 }
@@ -136,18 +155,18 @@ header {
 
 .option-contain-ingredient input::placeholder {
   color: u.$light;
-  opacity: 1;
+  opacity: 0.5;
   font-weight: 700;
 }
 .option-contain-appareils input::placeholder {
   color: u.$light;
-  opacity: 1;
+  opacity: 0.5;
 
   font-weight: 700;
 }
 .option-contain-ustensiles input::placeholder {
   color: u.$light;
-  opacity: 1;
+  opacity: 0.5;
 
   font-weight: 700;
 }
