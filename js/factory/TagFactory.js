@@ -11,19 +11,19 @@ export class TagFactory {
     switch (this.typeTag) {
       case 'ingredients':
         classTag = 'tag-ingredient'
-        break; case 'appareils':
+        break
+      case 'appareils':
         classTag = 'tag-appareil'
         break
       case 'ustensiles':
         classTag = 'tag-ustensile'
         break
     }
-    console.log(this.tag)
     let clickCheck = false
     const divTag = document.createElement('div')
     divTag.setAttribute('class', `${classTag} tag col-sm-auto`)
     divTag.textContent = this.tag
-    const tagId = this.tag.replaceAll(' ', '-').replaceAll(')', '-').replaceAll('(', '-')
+    const tagId = this.tag.replaceAll(' ', '-').replaceAll(')', '-').replaceAll('(', '-').replaceAll('%', '').replaceAll("'", '')
     divTag.setAttribute('id', tagId)
     divTag.addEventListener('click', () => {
       const searchBarInput = document.querySelector('#global-searchbar').value

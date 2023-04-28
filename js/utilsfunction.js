@@ -22,7 +22,6 @@ export function matchRegexTagText (tagList, classDiv) {
       } else { numberFalse.splice(1) }
     })
   }
-  console.log('num', numberFalse.length)
   return numberFalse
 }
 
@@ -41,7 +40,6 @@ export function doubleDatas (datas) {
 
 export function appendChildTags (elementTag, idTag, tagIngredients) {
   const tagContain = document.querySelector('.tag-contain')
-  console.log('e', tagContain.querySelector(`#${idTag}`))
   if (tagContain.querySelector(`#${idTag}`) === null) {
     allTags.push(tagIngredients)
     const iconeCross = document.createElement('i')
@@ -50,9 +48,9 @@ export function appendChildTags (elementTag, idTag, tagIngredients) {
     tagContain.appendChild(elementTag)
   }
 }
-export function removeChildTags (elementTag, tagIngredients) {
+export function removeChildTags (elementTag, tag) {
   const tagContain = document.querySelector('.tag-contain')
-  const indexTagRemove = allTags.indexOf(tagIngredients)
+  const indexTagRemove = allTags.indexOf(tag)
   allTags.splice(indexTagRemove, 1)
   tagContain.removeChild(elementTag)
 }
@@ -105,7 +103,6 @@ export function updateTag (word, type) {
       optionContain = document.querySelector('.option-contain-ustensiles')
       break
   }
-  if (optionContain.querySelector(classContainType) !== null) { optionContain.querySelector(classContainType).innerHTML = '' }
   if (document.querySelector('article') !== null) {
     const recipesDisplay = document.querySelectorAll('article')
     const tagUpdateArray = arrayTextContentDiv(recipesDisplay, classNameType)

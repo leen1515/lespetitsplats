@@ -4,7 +4,6 @@ import { IngredientsFactory } from './factory/IngredientsFactory.js'
 import { interactionTagListener, interactionSearchListener } from './listener.js'
 
 export const allTags = []
-export const allTagsArray = []
 export const allArticlesArray = []
 export async function getRecipes () {
   const recipesArray = recipes
