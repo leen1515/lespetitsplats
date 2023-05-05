@@ -1,4 +1,4 @@
-import { recipes } from './recipes.js'
+import { recipes } from './data/recipes.js'
 import { RecipesFactory } from './factory/RecipesFactory.js'
 import { IngredientsFactory } from './factory/IngredientsFactory.js'
 import { interactionTagListener, interactionSearchListener } from './listener.js'

@@ -1,9 +1,10 @@
-import { trigDisplayArticlesFiltred, updateTag } from './utilsfunction.js'
-
+import { trigDisplayArticlesFiltred } from './search.js'
+import { updateTag, displaySectionTag, hideSectionTag } from './tags.js'
 export function interactionSearchListener () {
   const searchBarInput = document.querySelector('#global-searchbar')
   const buttonValidateSearch = document.querySelector('#searchValidate')
   const optionContain = document.querySelectorAll('.option-contain')
+  trigDisplayArticlesFiltred('')
   searchBarInput.addEventListener('input', (e) => {
     const word = e.target.value
     if (word.length >= 3) {
@@ -26,7 +27,6 @@ export function interactionSearchListener () {
 }
 
 export function interactionTagListener () {
-  const searchBarInput = document.querySelector('#global-searchbar')
   const inputIngredientTag = document.querySelector('#input-ingredients-tag')
   const inputAppliancesTag = document.querySelector('#input-appareils-tag')
   const inputUstensilsTag = document.querySelector('#input-ustensiles-tag')
@@ -37,68 +37,41 @@ export function interactionTagListener () {
   const ustensileButtonActivation = document.querySelector('#display-ustensile-buttonclass')
 
   ingredientButtonActivation.addEventListener('click', () => {
-    if (ingredientButtonActivation.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
-      document.querySelector('.option-ingredients').style.display = 'grid'
-      ingredientButtonActivation.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-    } else {
-      document.querySelector('.option-ingredients').style.display = 'none'
-      ingredientButtonActivation.className = 'fa-solid fa-angle-down fa-xl icone-position col-1'
-    }
+    displaySectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
   })
   applianceButtonActivation.addEventListener('click', () => {
-    if (applianceButtonActivation.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
-      document.querySelector('.option-appareils').style.display = 'grid'
-      applianceButtonActivation.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-    } else {
-      document.querySelector('.option-appareils').style.display = 'none'
-      applianceButtonActivation.className = 'fa-solid fa-angle-down fa-xl icone-position col-1'
-    }
+    displaySectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
   })
   ustensileButtonActivation.addEventListener('click', () => {
-    if (ustensileButtonActivation.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
-      document.querySelector('.option-ustensiles').style.display = 'grid'
-      ustensileButtonActivation.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-    } else {
-      document.querySelector('.option-ustensiles').style.display = 'none'
-      ustensileButtonActivation.className = 'fa-solid fa-angle-down fa-xl icone-position col-1'
-    }
+    displaySectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
-
+  inputIngredientTag.addEventListener('click', () => {
+    displaySectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+  })
+  inputAppliancesTag.addEventListener('click', () => {
+    displaySectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
+  })
+  inputUstensilsTag.addEventListener('click', () => {
+    displaySectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
+  })
   inputIngredientTag.addEventListener('input', (e) => {
     if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
     const word = e.target.value
     updateTag(word, 'ingredients')
-    if (ingredientButtonActivation.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
-      document.querySelector('.option-ingredients').style.display = 'grid'
-      ingredientButtonActivation.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-    } else {
-      document.querySelector('.option-ingredients').style.display = 'none'
-      ingredientButtonActivation.className = 'fa-solid fa-angle-down fa-xl icone-position col-1'
-    }
   })
 
   inputAppliancesTag.addEventListener('input', (e) => {
-    if (applianceButtonActivation.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
-      document.querySelector('.option-appareils').style.display = 'grid'
-      applianceButtonActivation.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-    } else {
-      document.querySelector('.option-appareils').style.display = 'none'
-      applianceButtonActivation.className = 'fa-solid fa-angle-down fa-xl icone-position col-1'
-    }
+    if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
+    const word = e.target.value
+    updateTag(word, 'appareils')
   })
   inputUstensilsTag.addEventListener('input', (e) => {
     if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
     const word = e.target.value
     updateTag(word, 'ustensiles')
-    if (ustensileButtonActivation.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
-      document.querySelector('.option-ustensiles').style.display = 'grid'
-      ustensileButtonActivation.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-    } else {
-      document.querySelector('.option-ustensiles').style.display = 'none'
-      ustensileButtonActivation.className = 'fa-solid fa-angle-down fa-xl icone-position col-1'
-    }
   })
 
+  const searchBarInput = document.querySelector('#global-searchbar')
   document.addEventListener('click', () => {
     const word = searchBarInput.value
     trigDisplayArticlesFiltred(word)
@@ -106,5 +79,16 @@ export function interactionTagListener () {
     updateTag(inputIngredientTag.value, 'ingredients')
     updateTag(inputAppliancesTag.value, 'appareils')
     updateTag(inputUstensilsTag.value, 'ustensiles')
+  })
+  const main = document.querySelector('.recipes-contain')
+  main.addEventListener('mouseover', () => {
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
+  })
+  searchBarInput.addEventListener('mouseover', () => {
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
 }

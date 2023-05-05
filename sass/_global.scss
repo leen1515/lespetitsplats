@@ -71,6 +71,11 @@ header {
   color:u.$light;
   font-weight: 400;
 }
+.option{
+  display:none;
+  width:auto;
+  padding: 20px;
+}
 
 .option-ingredients{
   display:none;
@@ -78,10 +83,12 @@ header {
   width:auto;
   height:auto!important;
   grid-template-columns: auto auto auto!important;
+  gap:0 30px;
 }
 
 .option-appareils{
-  
+  gap:0 30px;
+
   display:none;
   background-color: u.$green;
   width:auto!important;
@@ -90,7 +97,8 @@ header {
   grid-template-columns: auto auto auto!important;
 }
 .option-ustensiles{
-  
+  gap:0 30px;
+
   display:none;
   background-color: u.$orange;
   position:relative;
@@ -98,7 +106,7 @@ header {
   height:auto!important;
   grid-template-columns: auto auto auto!important;
 }
-.option-contain-ingredient {
+.option-contain-ingredients {
   
   position:relative;
   width:auto;
@@ -115,12 +123,14 @@ header {
   height: 60px;
   padding: 15px 12px 15px 12px;
 }
-.option-contain-ingredient input {
+.option-contain-ingredients input {
   background-color: transparent;
   border: none;
   outline: none;
   color: u.$light;
   font-weight: 700;
+  padding: 8px;
+  width:120px;
 }
 
 .input-icone-contain {
@@ -137,6 +147,8 @@ header {
 .icone-position {
   color: u.$light;
   cursor: pointer;
+  
+  padding: 10px 40px 0 0;
 }
 .option-contain-appareils input {
   background-color: transparent;
@@ -144,6 +156,9 @@ header {
   outline: none;
   color: u.$light;
   font-weight: 700;
+  padding: 8px;
+  
+  width:120px;
 }
 .option-contain-ustensiles input {
   background-color: transparent;
@@ -151,26 +166,35 @@ header {
   outline: none;
   color: u.$light;
   font-weight: 700;
+  padding: 8px;
+  
+  width:120px;
 }
 
-.option-contain-ingredient input::placeholder {
+.option-contain-ingredients input::placeholder {
+  opacity: 1;
+  padding: 10px;
   color: u.$light;
-  opacity: 0.5;
   font-weight: 700;
+  margin: auto;
 }
 .option-contain-appareils input::placeholder {
   color: u.$light;
-  opacity: 0.5;
-
+  padding: 10px;
   font-weight: 700;
+  opacity: 1;
 }
 .option-contain-ustensiles input::placeholder {
   color: u.$light;
-  opacity: 0.5;
-
+  padding: 10px;
   font-weight: 700;
+  opacity: 1;
 }
 
+
+.option-contain{
+  padding:0;
+}
 .recipes-contain {
   margin:0 auto!important;;
   display: grid!important;

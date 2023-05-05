@@ -72,15 +72,23 @@ header {
   font-weight: 400;
 }
 
+.option {
+  display: none;
+  width: auto;
+  padding: 20px;
+}
+
 .option-ingredients {
   display: none;
   background-color: #3282F7;
   width: auto;
   height: auto !important;
   grid-template-columns: auto auto auto !important;
+  gap: 0 30px;
 }
 
 .option-appareils {
+  gap: 0 30px;
   display: none;
   background-color: #68D9A4;
   width: auto !important;
@@ -90,6 +98,7 @@ header {
 }
 
 .option-ustensiles {
+  gap: 0 30px;
   display: none;
   background-color: #ED6454;
   position: relative;
@@ -98,7 +107,7 @@ header {
   grid-template-columns: auto auto auto !important;
 }
 
-.option-contain-ingredient {
+.option-contain-ingredients {
   position: relative;
   width: auto;
   height: 60px;
@@ -117,12 +126,14 @@ header {
   padding: 15px 12px 15px 12px;
 }
 
-.option-contain-ingredient input {
+.option-contain-ingredients input {
   background-color: transparent;
   border: none;
   outline: none;
   color: #FFFFFF;
   font-weight: 700;
+  padding: 8px;
+  width: 120px;
 }
 
 .input-icone-contain {
@@ -141,6 +152,7 @@ header {
 .icone-position {
   color: #FFFFFF;
   cursor: pointer;
+  padding: 10px 40px 0 0;
 }
 
 .option-contain-appareils input {
@@ -149,6 +161,8 @@ header {
   outline: none;
   color: #FFFFFF;
   font-weight: 700;
+  padding: 8px;
+  width: 120px;
 }
 
 .option-contain-ustensiles input {
@@ -157,24 +171,34 @@ header {
   outline: none;
   color: #FFFFFF;
   font-weight: 700;
+  padding: 8px;
+  width: 120px;
 }
 
-.option-contain-ingredient input::placeholder {
+.option-contain-ingredients input::placeholder {
+  opacity: 1;
+  padding: 10px;
   color: #FFFFFF;
-  opacity: 0.5;
   font-weight: 700;
+  margin: auto;
 }
 
 .option-contain-appareils input::placeholder {
   color: #FFFFFF;
-  opacity: 0.5;
+  padding: 10px;
   font-weight: 700;
+  opacity: 1;
 }
 
 .option-contain-ustensiles input::placeholder {
   color: #FFFFFF;
-  opacity: 0.5;
+  padding: 10px;
   font-weight: 700;
+  opacity: 1;
+}
+
+.option-contain {
+  padding: 0;
 }
 
 .recipes-contain {

@@ -1,4 +1,5 @@
-import { appendChildTags, removeChildTags, trigDisplayArticlesFiltred } from '../utilsfunction.js'
+import { appendChildTags, removeChildTags } from '../tags.js'
+import { trigDisplayArticlesFiltred } from '../search.js'
 
 export class TagFactory {
   constructor (tag, tagType) {
