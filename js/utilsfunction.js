@@ -1,6 +1,6 @@
 
-export function caseFirstLetter (letter) {
-  const letterLowerCase = letter.toLowerCase()
+export function caseFirstLetterNormalize (letter) {
+  const letterLowerCase = letter.toLowerCase().trim().replaceAll(')', '').replaceAll('(', '')
   return (letterLowerCase + '').charAt(0).toUpperCase() + letterLowerCase.substr(1)
 }
 

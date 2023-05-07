@@ -1,13 +1,20 @@
 import { trigDisplayArticlesFiltred } from './search.js'
 import { updateTag, displaySectionTag, hideSectionTag } from './tags.js'
+
+const searchBarInput = document.querySelector('#global-searchbar')
+const buttonValidateSearch = document.querySelector('#searchValidate')
+const optionContain = document.querySelectorAll('.option-contain')
+
+const inputIngredientTag = document.querySelector('#input-ingredients-tag')
+const inputAppliancesTag = document.querySelector('#input-appareils-tag')
+const inputUstensilsTag = document.querySelector('#input-ustensiles-tag')
+
 export function interactionSearchListener () {
-  const searchBarInput = document.querySelector('#global-searchbar')
-  const buttonValidateSearch = document.querySelector('#searchValidate')
-  const optionContain = document.querySelectorAll('.option-contain')
   trigDisplayArticlesFiltred('')
   searchBarInput.addEventListener('input', (e) => {
     const word = e.target.value
-    if (word.length >= 3) {
+    console.log(word)
+    if (word.length >= 0) {
       trigDisplayArticlesFiltred(word)
     }
     if (word === '') {
@@ -19,10 +26,9 @@ export function interactionSearchListener () {
     const word = e.target.value
     trigDisplayArticlesFiltred(word)
     if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
-    const wordEmpty = ''
-    updateTag(wordEmpty, 'ingredients')
-    updateTag(wordEmpty, 'appareils')
-    updateTag(wordEmpty, 'ustensiles')
+    updateTag(inputIngredientTag.value, 'ingredients')
+    updateTag(inputAppliancesTag.value, 'appareils')
+    updateTag(inputUstensilsTag.value, 'ustensiles')
   })
 }
 

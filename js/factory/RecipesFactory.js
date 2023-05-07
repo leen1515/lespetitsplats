@@ -1,13 +1,11 @@
 
 export class RecipesFactory {
-  constructor (id, name, cardsIngredients, time, description, appliance, ustensil) {
+  constructor (id, name, cardsIngredients, time, description) {
     this.id = id
     this.name = name
     this.cardsIngredients = cardsIngredients
     this.time = time
     this.description = description
-    this.appliance = appliance
-    this.ustensil = ustensil
   }
 
   cardsFactory () {
@@ -40,24 +38,6 @@ export class RecipesFactory {
     timeRecipe.textContent = this.time
     new Array(this.cardsIngredients)[0].forEach((ingredient) => { ingredientsRecipe.appendChild(ingredient) })
     indicationRecipe.textContent = this.description
-
-    const appliances = document.createElement('div')
-    const appliance = document.createElement('div')
-    appliances.setAttribute('class', 'applianceContain row')
-    appliance.setAttribute('class', 'appliance col-auto align-self-start')
-    appliance.textContent = `${this.appliance}`
-    appliances.appendChild(appliance)
-    ingredientsRecipe.appendChild(appliances)
-
-    const ustensiles = document.createElement('div')
-    this.ustensil.forEach((ustensilOne) => {
-      const ustensil = document.createElement('div')
-      ustensiles.setAttribute('class', 'ustensilContain row')
-      ustensil.setAttribute('class', 'ustensil col-auto align-self-start')
-      ustensil.textContent = `${ustensilOne}`
-      ustensiles.appendChild(ustensil)
-      ingredientsRecipe.appendChild(ustensiles)
-    })
 
     articleRecipe.appendChild(imgContainRecipe)
     articleRecipe.appendChild(descriptionRecipe)

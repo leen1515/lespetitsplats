@@ -1,5 +1,5 @@
 import { appendChildTags, removeChildTags } from '../tags.js'
-import { trigDisplayArticlesFiltred } from '../search.js'
+import { caseFirstLetterNormalize } from '../utilsfunction.js'
 
 export class TagFactory {
   constructor (tag, tagType) {
@@ -27,10 +27,8 @@ export class TagFactory {
     const tagId = this.tag.replaceAll(' ', '-').replaceAll(')', '-').replaceAll('(', '-').replaceAll('%', '').replaceAll("'", '')
     divTag.setAttribute('id', tagId)
     divTag.addEventListener('click', () => {
-      const searchBarInput = document.querySelector('#global-searchbar').value
-      trigDisplayArticlesFiltred(searchBarInput)
       if (!clickCheck) {
-        appendChildTags(divTag, tagId, this.tag); clickCheck = true
+        appendChildTags(divTag, tagId, caseFirstLetterNormalize(this.tag)); clickCheck = true
       } else {
         removeChildTags(divTag, this.tag); clickCheck = false
       }

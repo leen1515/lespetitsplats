@@ -1,12 +1,12 @@
 import { allTags } from './index.js'
-import { caseFirstLetter, doubleDatas } from './utilsfunction.js'
+import { caseFirstLetterNormalize, doubleDatas } from './utilsfunction.js'
 import { TagFactory } from './factory/TagFactory.js'
-import { matchRegex } from './search.js'
+import { matchRegexListTag, allArticlesArrayUpdate } from './search.js'
 
-export function appendChildTags (elementTag, idTag, tagIngredients) {
+export function appendChildTags (elementTag, idTag, tag) {
   const tagContain = document.querySelector('.tag-contain')
   if (tagContain.querySelector(`#${idTag}`) === null) {
-    allTags.push(tagIngredients)
+    allTags.push(tag)
     const iconeCross = document.createElement('i')
     iconeCross.setAttribute('class', 'fa-regular fa-circle-xmark fa-x-position')
     elementTag.appendChild(iconeCross)
@@ -20,46 +20,67 @@ export function removeChildTags (elementTag, tag) {
   tagContain.removeChild(elementTag)
 }
 
-export function arrayTextContentDiv (arrayDiv, className) {
-  const arrayTextContent = []
-  arrayDiv.forEach((div) => {
-    const divIngredients = div.querySelectorAll(className)
-    divIngredients.forEach((divIngredient) => {
-      arrayTextContent.push(caseFirstLetter(divIngredient.textContent.toLowerCase()))
-    }
-    )
-  })
-  const orderTag = arrayTextContent.sort((a, b) => {
+export function listTextTagContent (allArticlesArrayUpdate, type) {
+  const arrayTextContentIngredients = []
+  const arrayTextContentAppliances = []
+  const arrayTextContentUstensils = []
+
+  if (type === 'ingredients') {
+    allArticlesArrayUpdate.forEach((articleArray) => {
+      articleArray[2].forEach((textIngredient) => {
+        arrayTextContentIngredients.push(caseFirstLetterNormalize(textIngredient.ingredient).replaceAll(/\d/g, '').replaceAll('Viande hachée % de matière grasse', 'Viande hachée'))
+      }
+      )
+    })
+  } else if (type === 'appareils') {
+    allArticlesArrayUpdate.forEach((articleArray) => {
+      arrayTextContentAppliances.push(caseFirstLetterNormalize(articleArray[5]).replaceAll(/\d/g, ''))
+    })
+  } else if (type === 'ustensiles') {
+    allArticlesArrayUpdate.forEach((articleArray) => {
+      articleArray[6].forEach((textUstensils) => {
+        arrayTextContentUstensils.push(caseFirstLetterNormalize(textUstensils).replaceAll(/\d/g, ''))
+      }
+      )
+    })
+  }
+
+  const treatmentTextContentIngredients = arrayTextContentIngredients.sort((a, b) => {
     return a.localeCompare(b, 'fr', { sensitivity: 'base' })
   })
-  return doubleDatas(orderTag)
+  const treatmentTextContentAppliances = arrayTextContentAppliances.sort((a, b) => {
+    return a.localeCompare(b, 'fr', { sensitivity: 'base' })
+  })
+  const treatmentextContentUstensils = arrayTextContentUstensils.sort((a, b) => {
+    return a.localeCompare(b, 'fr', { sensitivity: 'base' })
+  })
+  return [doubleDatas(treatmentTextContentIngredients),
+    doubleDatas(treatmentTextContentAppliances),
+    doubleDatas(treatmentextContentUstensils)]
 }
 
-export function updateTag (word, type, order) {
+export function updateTag (word, type) {
+  let typeNumber
   let classContainType
   let optionContain
-  let classNameType
   if (type === 'ingredients') {
     classContainType = '.option-ingredients'
     optionContain = document.querySelector('.option-contain-ingredients')
-    classNameType = '.ingredient'
+    typeNumber = 0
   } else if (type === 'appareils') {
     classContainType = '.option-appareils'
-    classNameType = '.appliance'
     optionContain = document.querySelector('.option-contain-appareils')
+    typeNumber = 1
   } else if (type === 'ustensiles') {
     classContainType = '.option-ustensiles'
-    classNameType = '.ustensil'
     optionContain = document.querySelector('.option-contain-ustensiles')
+    typeNumber = 2
   }
 
-  if (document.querySelector('article') !== null) {
-    const recipesDisplay = document.querySelectorAll('article')
-    const tagUpdateArray = arrayTextContentDiv(recipesDisplay, classNameType, order)
-    matchRegex(word, tagUpdateArray).forEach((wordTag) => {
-      optionContain.querySelector(classContainType).appendChild(new TagFactory(wordTag, type).tagDiv())
-    })
-  }
+  const tagUpdateArray = listTextTagContent(allArticlesArrayUpdate, type)[typeNumber]
+  matchRegexListTag(word, tagUpdateArray).forEach((wordTag) => {
+    optionContain.querySelector(classContainType).appendChild(new TagFactory(wordTag, type).tagDiv())
+  })
 }
 
 export function displaySectionTag (button, type, input) {
