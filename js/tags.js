@@ -20,7 +20,7 @@ export function removeChildTags (elementTag, tag) {
   tagContain.removeChild(elementTag)
 }
 
-export function listTextTagContent (allArticlesArrayUpdate, type) {
+export function listTextTagContent (allArticlesArrayUpdate, type, order) {
   const arrayTextContentIngredients = []
   const arrayTextContentAppliances = []
   const arrayTextContentUstensils = []
@@ -44,22 +44,27 @@ export function listTextTagContent (allArticlesArrayUpdate, type) {
       )
     })
   }
-
-  const treatmentTextContentIngredients = arrayTextContentIngredients.sort((a, b) => {
-    return a.localeCompare(b, 'fr', { sensitivity: 'base' })
-  })
-  const treatmentTextContentAppliances = arrayTextContentAppliances.sort((a, b) => {
-    return a.localeCompare(b, 'fr', { sensitivity: 'base' })
-  })
-  const treatmentextContentUstensils = arrayTextContentUstensils.sort((a, b) => {
-    return a.localeCompare(b, 'fr', { sensitivity: 'base' })
-  })
-  return [doubleDatas(treatmentTextContentIngredients),
-    doubleDatas(treatmentTextContentAppliances),
-    doubleDatas(treatmentextContentUstensils)]
+  let treatmentTextContentIngredients
+  let treatmentTextContentAppliances
+  let treatmentextContentUstensils
+  if (order === true) {
+    treatmentTextContentIngredients = doubleDatas(arrayTextContentIngredients).sort((a, b) => {
+      return a.localeCompare(b, 'fr', { sensitivity: 'base' })
+    })
+    treatmentTextContentAppliances = doubleDatas(arrayTextContentAppliances).sort((a, b) => {
+      return a.localeCompare(b, 'fr', { sensitivity: 'base' })
+    })
+    treatmentextContentUstensils = doubleDatas(arrayTextContentUstensils).sort((a, b) => {
+      return a.localeCompare(b, 'fr', { sensitivity: 'base' })
+    })
+  } else {
+    treatmentTextContentIngredients = doubleDatas(arrayTextContentIngredients)
+    treatmentTextContentAppliances = doubleDatas(arrayTextContentAppliances)
+    treatmentextContentUstensils = doubleDatas(arrayTextContentUstensils)
+  }
+  return [treatmentTextContentIngredients, treatmentTextContentAppliances, treatmentextContentUstensils]
 }
-
-export function updateTag (word, type) {
+export function updateTag (word, type, order) {
   let typeNumber
   let classContainType
   let optionContain
@@ -77,7 +82,7 @@ export function updateTag (word, type) {
     typeNumber = 2
   }
 
-  const tagUpdateArray = listTextTagContent(allArticlesArrayUpdate, type)[typeNumber]
+  const tagUpdateArray = listTextTagContent(allArticlesArrayUpdate, type, order)[typeNumber]
   matchRegexListTag(word, tagUpdateArray).forEach((wordTag) => {
     optionContain.querySelector(classContainType).appendChild(new TagFactory(wordTag, type).tagDiv())
   })

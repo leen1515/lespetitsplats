@@ -23,6 +23,7 @@ export class TagFactory {
     let clickCheck = false
     const divTag = document.createElement('div')
     divTag.setAttribute('class', `${classTag} tag col-sm-auto`)
+    divTag.setAttribute('name', 'tags')
     divTag.textContent = this.tag
     const tagId = this.tag.replaceAll(' ', '-').replaceAll(')', '-').replaceAll('(', '-').replaceAll('%', '').replaceAll("'", '')
     divTag.setAttribute('id', tagId)
