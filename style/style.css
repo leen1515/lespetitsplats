@@ -338,6 +338,19 @@ header {
   z-index: 1;
 }
 
+.img-parent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  opacity: 0.5;
+  object-fit: contain;
+  width: 50%;
+  height: 50%;
+}
+
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

@@ -11,7 +11,7 @@ export class RecipesFactory {
   cardsFactory () {
     const articleRecipe = document.createElement('article')
     const imgContainRecipe = document.createElement('div')
-    // const imgRecipe = document.createElement('img')
+    const imgRecipe = document.createElement('img')
     const descriptionRecipe = document.createElement('div')
     const headRecipe = document.createElement('div')
     const h2Recipe = document.createElement('h2')
@@ -22,6 +22,8 @@ export class RecipesFactory {
     const ingredientsRecipe = document.createElement('div')
     const indicationRecipe = document.createElement('div')
 
+    imgRecipe.setAttribute('src', './../../asset/logo.jpg')
+    imgRecipe.setAttribute('class', 'img')
     articleRecipe.setAttribute('id', this.id)
     articleRecipe.setAttribute('class', 'recipes-article')
     imgContainRecipe.setAttribute('class', 'img-parent')
@@ -39,6 +41,7 @@ export class RecipesFactory {
     new Array(this.cardsIngredients)[0].forEach((ingredient) => { ingredientsRecipe.appendChild(ingredient) })
     indicationRecipe.textContent = this.description
 
+    imgContainRecipe.appendChild(imgRecipe)
     articleRecipe.appendChild(imgContainRecipe)
     articleRecipe.appendChild(descriptionRecipe)
     descriptionRecipe.appendChild(headRecipe)
