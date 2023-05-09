@@ -100,7 +100,7 @@ export function displaySectionTag (button, type, input) {
   }
 }
 export function hideSectionTag (button, type, input) {
-  input.placeholder = `${type}`
+  input.placeholder = `${caseFirstLetterNormalize(type)}`
   input.style.width = '120px'
   input.style.opacity = '1'
   input.value = ''
