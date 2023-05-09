@@ -29,6 +29,8 @@ header {
   background-color: transparent;
   border: none;
   outline: none;
+  font-size: large;
+
 }
 .searchbar-contain button {
   background-color: transparent;
@@ -45,11 +47,13 @@ header {
 }
 .tag-contain{
   gap:30px;
-  min-height:30px;
-  padding: 20px 10px;
+  min-height:0px;
+  padding: 10px 10px;
 }
 
 .tag{
+  font-size: medium;
+  font-family: 'Lato', sans-serif;
 
 }
 
@@ -84,6 +88,7 @@ header {
   height:auto!important;
   grid-template-columns: auto auto auto!important;
   gap:0 30px;
+  border-radius: 5px;
 }
 
 .option-appareils{
@@ -95,6 +100,7 @@ header {
   height:auto!important;
   position:relative;
   grid-template-columns: auto auto auto!important;
+  border-radius: 5px;
 }
 .option-ustensiles{
   gap:0 30px;
@@ -105,9 +111,11 @@ header {
   width:auto!important;
   height:auto!important;
   grid-template-columns: auto auto auto!important;
+  border-radius: 5px;
+  z-index: 2;
 }
 .option-contain-ingredients {
-  
+  z-index: 2;
   position:relative;
   width:auto;
   height: 60px;
@@ -117,6 +125,7 @@ header {
   width: auto;
   height: 60px;
   padding: 15px 12px 15px 12px;
+  z-index: 2;
 }
 .option-contain-ustensiles {
   width: auto;
@@ -174,26 +183,33 @@ header {
 .option-contain-ingredients input::placeholder {
   opacity: 1;
   padding: 10px;
+  font-size: large;
   color: u.$light;
   font-weight: 700;
   margin: auto;
+  font-family: 'Lato', sans-serif;
 }
 .option-contain-appareils input::placeholder {
+  font-size: large;
   color: u.$light;
   padding: 10px;
   font-weight: 700;
   opacity: 1;
+  font-family: 'Lato', sans-serif;
 }
 .option-contain-ustensiles input::placeholder {
   color: u.$light;
   padding: 10px;
   font-weight: 700;
   opacity: 1;
+  font-family: 'Lato', sans-serif;
+  font-size: large;
 }
 
 
 .option-contain{
   padding:10px 0;
+  margin: 0 0 40px 0;
 }
 .recipes-contain {
   margin:0 auto!important;;
@@ -207,7 +223,7 @@ header {
   font-size: small;
   line-height: 17px;
   border-radius: 5px 5px 0px 0px;
-  margin: 20px auto;
+  margin: 30px auto;
 }
 
 .img-parent {
@@ -221,6 +237,7 @@ header {
 .description-recipe {
   margin: auto;
   height: 200px;
+  overflow: hidden;
   background-color: u.$greyLight;
   padding: 20px 30px;
 }
@@ -233,6 +250,7 @@ header {
   font-size: 18px;
   font-weight: 700;
   padding: 0 !important;
+  font-family: 'Lato', sans-serif;
 }
 
 .header__time-contain {
@@ -240,16 +258,18 @@ header {
   font-weight: 700;
   text-align: end;
   white-space: nowrap;
+  font-family: 'Lato', sans-serif;
 }
 
 .time {
 }
 
 .body-description {
+  font-size: 10pt;
 }
 
 .body-ingredient {
-  height: 100px;
+  height: 105px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -258,17 +278,21 @@ header {
 }
 
 .body-indication {
-  height: 100px;
+  height: 105px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  font-family: 'Roboto', sans-serif;
 }
 
 .ingredientsContain {
+  
+  overflow: hidden;
 }
 .ingredient {
+  font-family: 'Lato', sans-serif;
   white-space: nowrap;
   width: auto;
   font-weight: 700;
@@ -276,10 +300,30 @@ header {
   padding: 0 !important;
 }
 .quantity {
+  font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0 0 0 5px !important;
 }
 .unit {
+  font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0 0 0 5px !important;
+}
+.recipes-contain__infos{
+  background-color: u.$greyDark;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  position:fixed;
+  padding: 20px;
+  border-radius: 10px;
+  width:50%;
+  height:300px;
+  font-size: 34px;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  z-index: 1;
 }
