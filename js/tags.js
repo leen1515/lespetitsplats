@@ -3,6 +3,8 @@ import { caseFirstLetterNormalize, doubleDatas } from './utilsfunction.js'
 import { TagFactory } from './factory/TagFactory.js'
 import { matchRegexListTag, allArticlesArrayUpdate } from './search.js'
 
+// cree le tag selectionné et l'ajoute dans le tableau à portée global : allTags
+// ainsi que dans le conteneur des tags selectionnés côté DOM
 export function appendChildTags (elementTag, idTag, tag) {
   const tagContain = document.querySelector('.tag-contain')
   if (tagContain.querySelector(`#${idTag}`) === null) {
@@ -95,8 +97,6 @@ export function displaySectionTag (button, type, input) {
   if (button.className === 'fa-solid fa-angle-down fa-xl icone-position col-1') {
     document.querySelector(`.option-${type}`).style.display = 'grid'
     button.className = 'fa-solid fa-angle-up fa-xl icone-position col-1'
-  } else {
-    hideSectionTag(button, type, input)
   }
 }
 export function hideSectionTag (button, type, input) {

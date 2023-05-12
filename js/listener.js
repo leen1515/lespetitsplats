@@ -35,35 +35,59 @@ export function interactionSearchListener () {
 export function interactionTagListener () {
   ingredientButtonActivation.addEventListener('click', () => {
     updateDataDisplay('ingredients', false)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
   applianceButtonActivation.addEventListener('click', () => {
     updateDataDisplay('appareils', false)
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
   ustensileButtonActivation.addEventListener('click', () => {
     updateDataDisplay('ustensiles', false)
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
   })
 
   inputIngredientTag.addEventListener('click', () => {
     updateDataDisplay('ingredients', false)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
   inputAppliancesTag.addEventListener('click', () => {
     updateDataDisplay('appareils', false)
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
 
   inputUstensilsTag.addEventListener('click', () => {
     updateDataDisplay('ustensiles', false)
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
   })
 
   inputIngredientTag.addEventListener('input', (e) => {
-    updateDataDisplay('ingredients', true)
+    if (e.target.value.length >= 3 || e.target.value === '') {
+      updateDataDisplay('ingredients', true)
+    }
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
 
   inputAppliancesTag.addEventListener('input', (e) => {
-    updateDataDisplay('appareils', true)
+    if (e.target.value.length >= 3 || e.target.value === '') {
+      updateDataDisplay('appareils', true)
+    }
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
 
   inputUstensilsTag.addEventListener('input', (e) => {
-    updateDataDisplay('ustensiles', true)
+    if (e.target.value.length >= 3 || e.target.value === '') {
+      updateDataDisplay('ustensiles', true)
+    }
+    hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
+    hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
   })
 
   const searchBarInput = document.querySelector('#global-searchbar')

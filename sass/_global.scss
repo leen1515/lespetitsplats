@@ -237,6 +237,7 @@ header {
   overflow: hidden;
   background-color: u.$greyLight;
   padding: 20px 30px;
+  border-radius: 0 0 5px 5px;
 }
 
 .description-header {
@@ -334,4 +335,5 @@ header {
   object-fit: contain;
   width: 50%;
   height: 50%;
+  border-radius: 30px;
 }

@@ -11,5 +11,4 @@ export async function getRecipes () {
   interactionTagListener()
   interactionSearchListener()
 }
-
 getRecipes()
