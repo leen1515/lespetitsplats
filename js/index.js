@@ -7,7 +7,7 @@ export const allTags = []
 export const allArticlesArray = []
 
 export async function getRecipes () {
-  // rempli le tableau allArticlesArray car la fonction qui construit les recettes travaille uniquement avec ce
+  // rempli le tableau allArticlesArray car la fonction qui construit les recettes travaille avec ce
   // tableau qui est dynamique et se met à jour selon les évènements utilisateur
   recipes.forEach((recipe) => {
     allArticlesArray.push([recipe.id, recipe.name, recipe.ingredients, recipe.time, recipe.description, recipe.appliance, recipe.ustensils])
