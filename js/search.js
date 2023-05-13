@@ -11,30 +11,36 @@ const inputIngredientTag = document.querySelector('#input-ingredients-tag')
 const inputAppliancesTag = document.querySelector('#input-appareils-tag')
 const inputUstensilsTag = document.querySelector('#input-ustensiles-tag')
 
-export function matchRegexListTag (word, listTagDatas) {
-  const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
-  const filteredTagDatas = listTagDatas.filter((data) => searchUser.test(data))
-  return filteredTagDatas
-}
+// parcours les données recettes ou un tableau tags glissé en argument, le test avec un objet regex
+// et retourne uniquement les éléments qui ont répondu positivement au test: utilisé pour filtrer les recettes
+// ainsi que pour filtrer les tags présents dans les listes
 export function testMatchRegexText (word, text) {
   const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
   const filteredArticlesDatas = text.filter((data) => { return (searchUser.test(JSON.stringify(data))) })
   return filteredArticlesDatas
 }
-
+// test une recette et la test selon les tags sélectionnés par l'utilisateur.
+// cette fonction est appelée uniquement s'il y a des tags selectionnés.
+// elle apparait dans une boucle qui n'ajoute que la recette positive à un nouveau tableau
 export function matchRegexTagText (tagList, textRecipes) {
+  // initialise un tableau pour compter le nombre de retour vrai par tag
   const checkTest = []
+  // initialise une variable par défaut sur faux
   let check = false
+  // parcourt les tags, les test avec la recette en argument et push 1 au tableau checktest si vrai
+  // à l'inverse, il enlève 1 à ce même tableau si faux
   tagList.forEach((tag) => {
     const tagUser = new RegExp(`${caseFirstLetterNormalize(tag)}`, 'gi');
     (tagUser.test(JSON.stringify(textRecipes)) ? checkTest.push(1) : checkTest.splice(0, 1))
   });
+  // compte le tableau checkTest et le compare au nombre de tag selectionné, s'ils sont égaux,
+  // cela veut dire que la recette correspond à tous les tags que l'utilisateur à coché, cela
+  // retourne vrai et valide notre recette.
   (checkTest.length === tagList.length ? check = true : check = false)
   return check
 }
 
-// déclenche le filtrage des recettes avec en parametre les mots clés de la barre de recherche principal et
-// les tags selectionnées
+// déclenche le filtrage des recettes avec en parametre les mots clés de la barre de recherche principal
 export function trigDisplayArticlesFiltred (searchUser) {
   // au lancement de la fonction, stock dans une variable en premier lieu le tableau à portée globale :
   // "allArticlesArray" après avoir été filtré par les mots clés récupérés depuis la barre de recherche principal
@@ -45,6 +51,8 @@ export function trigDisplayArticlesFiltred (searchUser) {
   // dans un nouveau tableau : arrayTagMatch
   if (allTags.length > 0) {
     allArticlesArrayUpdate.forEach((element) => {
+      // la fonction ci-dessous est appelée pour verifier chaque element à chaque tag, ainsi,
+      // est ajouté uniquement la recette passant le test avec succès au nouveau tableau.
       if (matchRegexTagText(allTags, element)) {
         arrayTagMatch.push(element)
       }
@@ -54,9 +62,8 @@ export function trigDisplayArticlesFiltred (searchUser) {
     // le tableau est envoyé pour la construction des recettes dans le DOM
     createArticles(allArticlesArrayUpdate)
   } else {
-    // et même s'il y a zero tags selectionné, le tableau est tout de même récupéré
+    // et s'il y a zero tags selectionné, le tableau uniquement filtré par les mots clés est récupéré
     // pour la construction des recettes dans le DOM
-    allArticlesArrayUpdate = testMatchRegexText(searchUser, allArticlesArray)
     createArticles(allArticlesArrayUpdate)
   }
 }
@@ -84,7 +91,7 @@ function createArticles (allArticlesArray) {
   })
   const infos = document.createElement('div')
   infos.setAttribute('class', 'recipes-contain__infos')
-  // injecte dans la balise de la variable infos un message pour l'utilisateur
+  // injecte dans la balise de la variable infos, un message pour l'utilisateur
   // dans le cas ou le tableau global des recettes serait vide
   if (allArticlesArray.length === 0) {
     infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
