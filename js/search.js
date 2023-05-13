@@ -74,10 +74,8 @@ function createArticles (allArticlesArray) {
   const allRecipes = document.querySelector('.recipes-contain')
   // initialise le conteneur en le vidant afin d'accueillir les recettes correspondantes
   allRecipes.innerHTML = ''
-  // réordonne le tableau par lettre alphabétique des titres des recettes
-  const allArticlesOrder = allArticlesArray.sort((a, b) => { return a[1].localeCompare(b[1], 'fr', { sensitivity: 'base' }) })
   // boucle le tableau final pour lancer la construction des balises des recettes filtrées
-  allArticlesOrder.forEach((elementArticleUpdate) => {
+  allArticlesArray.forEach((elementArticleUpdate) => {
     // un tableau vide pour récupérer les ingredients qui seront bouclés pour chaque recette
     const cardsIngredients = []
     // pour chaque élement est bouclé la liste des recettes, les construit et les rajoute dans ce tableau
@@ -95,7 +93,7 @@ function createArticles (allArticlesArray) {
   // dans le cas ou le tableau global des recettes serait vide
   if (allArticlesArray.length === 0) {
     infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
-    allArticlesArray = recipes.forEach((recipe) => {
+    recipes.forEach((recipe) => {
       allArticlesArray.push([recipe.id, recipe.name, recipe.ingredients, recipe.time, recipe.description, recipe.appliance, recipe.ustensils])
       updateTag(inputIngredientTag.value, 'ingredients', true)
       updateTag(inputAppliancesTag.value, 'appareils', true)

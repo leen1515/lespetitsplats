@@ -255,6 +255,7 @@ header {
 
 .description-header {
   font-size: medium;
+  padding-right: 30px !important;
 }
 
 .header-title {

@@ -92,7 +92,6 @@ export function interactionTagListener () {
 
   const searchBarInput = document.querySelector('#global-searchbar')
   document.addEventListener('click', (e) => {
-    console.log(e.target.getAttribute('name'))
     if (e.target.getAttribute('name') === 'tags') {
       updateDataDisplay('total')
     }
