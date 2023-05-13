@@ -2,14 +2,8 @@ import { allArticlesArray, allTags } from './index.js'
 import { RecipesFactory } from './factory/RecipesFactory.js'
 import { IngredientsFactory } from './factory/IngredientsFactory.js'
 import { caseFirstLetterNormalize } from './utilsfunction.js'
-import { recipes } from './data/recipes.js'
-import { updateTag } from './tags.js'
 
 export let allArticlesArrayUpdate = []
-const searchBarInput = document.querySelector('#global-searchbar')
-const inputIngredientTag = document.querySelector('#input-ingredients-tag')
-const inputAppliancesTag = document.querySelector('#input-appareils-tag')
-const inputUstensilsTag = document.querySelector('#input-ustensiles-tag')
 
 // parcours les données recettes ou un tableau tags glissé en argument, le test avec un objet regex
 // et retourne uniquement les éléments qui ont répondu positivement au test: utilisé pour filtrer les recettes
@@ -93,14 +87,10 @@ function createArticles (allArticlesArray) {
   // dans le cas ou le tableau global des recettes serait vide
   if (allArticlesArray.length === 0) {
     infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
-    recipes.forEach((recipe) => {
-      allArticlesArray.push([recipe.id, recipe.name, recipe.ingredients, recipe.time, recipe.description, recipe.appliance, recipe.ustensils])
-      updateTag(inputIngredientTag.value, 'ingredients', true)
-      updateTag(inputAppliancesTag.value, 'appareils', true)
-      updateTag(inputUstensilsTag.value, 'ustensiles', true)
-      // efface la valeur de l'input de la searchbar au bout de 5secondes
-      setTimeout(() => { searchBarInput.value = '' }, 5000)
-    })
+    // efface la valeur de l'input de la searchbar au bout de 5secondes
+    const searchBarInput = document.querySelector('#global-searchbar')
+    setTimeout(() => { searchBarInput.value = '' }, 5000)
+
     // rajoute le message dans le dom
     allRecipes.appendChild(infos)
   }
