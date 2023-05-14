@@ -22,7 +22,7 @@ export class RecipesFactory {
     const ingredientsRecipe = document.createElement('div')
     const indicationRecipe = document.createElement('div')
 
-    imgRecipe.setAttribute('src', './../../asset/logo.jpg')
+    imgRecipe.setAttribute('src', './asset/logo.jpg')
     imgRecipe.setAttribute('class', 'img')
     articleRecipe.setAttribute('id', this.id)
     articleRecipe.setAttribute('class', 'recipes-article')
