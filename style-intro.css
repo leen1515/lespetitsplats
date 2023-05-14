@@ -50,3 +50,6 @@ body{
     font-family: "Lato", sans-serif;
 
 }
+.menu-link:hover{
+    color:white;
+}
