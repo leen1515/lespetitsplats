@@ -16,7 +16,8 @@
   "version": "1.0.0",
   "main": ".eslintrc.js",
   "scripts": {
-      "sass": "sass --watch ./sass/main.scss:./style/style.css --style expanded"
+      "sass-a1": "sass --watch ./algorithme-1/sass/main.scss:./algorithme-1/style/style.css --style expanded"
+	  "sass-a2": "sass --watch ./algorithme-2/sass/main.scss:./algorithme-2/style/style.css --style expanded"
     },
   "author": "",
   "license": "ISC",

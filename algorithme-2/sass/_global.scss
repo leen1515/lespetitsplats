@@ -1,0 +1,347 @@
+@use "utils" as u;
+
+body {
+  margin: auto;
+  padding: 50px;
+  min-width: 950px;
+}
+
+.hidden {
+  display: none;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.logo {
+  margin: auto;
+}
+
+.searchbar-contain {
+  margin: auto;
+  width: 100%;
+  background-color: u.$greyLight;
+  margin: 0 !important;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.searchbar-contain input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: large;
+}
+.searchbar-contain input::placeholder{
+  opacity: 0.4;
+}
+
+.searchbar-contain button {
+  background-color: transparent;
+  border: none;
+  margin: 0 -60px 0 0!important;
+}
+
+.select-contain {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin: 0 !important;
+  gap: 20px;
+}
+.tag-contain {
+  gap: 30px;
+  min-height: 0px;
+  padding: 10px 10px;
+}
+
+.tag {
+  font-size: medium;
+  font-family: "Lato", sans-serif;
+}
+
+.tag-ingredient {
+  background-color: u.$blue;
+  border-radius: 5px;
+  color: u.$light;
+  font-weight: 400;
+}
+.tag-appareil {
+  background-color: u.$green;
+  border-radius: 5px;
+  color: u.$light;
+  font-weight: 400;
+}
+.tag-ustensile {
+  background-color: u.$orange;
+  border-radius: 5px;
+  color: u.$light;
+  font-weight: 400;
+}
+.option {
+  display: none;
+  width: auto;
+  padding: 20px;
+}
+
+.option-ingredients {
+  display: none;
+  background-color: u.$blue;
+  width: auto;
+  height: auto !important;
+  grid-template-columns: auto auto auto !important;
+  gap: 0 30px;
+  border-radius: 5px;
+}
+
+.option-appareils {
+  gap: 0 30px;
+
+  display: none;
+  background-color: u.$green;
+  width: auto !important;
+  height: auto !important;
+  position: relative;
+  grid-template-columns: auto auto auto !important;
+  border-radius: 5px;
+}
+.option-ustensiles {
+  gap: 0 30px;
+
+  display: none;
+  background-color: u.$orange;
+  position: relative;
+  width: auto !important;
+  height: auto !important;
+  grid-template-columns: auto auto auto !important;
+  border-radius: 5px;
+  z-index: 2;
+}
+.option-contain-ingredients {
+  z-index: 2;
+  position: relative;
+  width: auto;
+  height: 60px;
+  padding: 15px 12px 15px 12px;
+}
+.option-contain-appareils {
+  width: auto;
+  height: 60px;
+  padding: 15px 12px 15px 12px;
+  z-index: 2;
+}
+.option-contain-ustensiles {
+  width: auto;
+  height: 60px;
+  padding: 15px 12px 15px 12px;
+}
+.option-contain-ingredients input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: u.$light;
+  font-weight: 700;
+  padding: 8px;
+  width: 120px;
+}
+
+.input-icone-contain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
+}
+.fa-x-position {
+  padding: 10px 0 10px 10px;
+}
+.icone-position {
+  color: u.$light;
+  cursor: pointer;
+
+  padding: 10px 40px 0 0;
+}
+.option-contain-appareils input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: u.$light;
+  font-weight: 700;
+  padding: 8px;
+
+  width: 120px;
+}
+.option-contain-ustensiles input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: u.$light;
+  font-weight: 700;
+  padding: 8px;
+
+  width: 120px;
+}
+
+.option-contain-ingredients input::placeholder {
+  opacity: 1;
+  padding: 10px;
+  font-size: large;
+  color: u.$light;
+  font-weight: 700;
+  margin: auto;
+  font-family: "Lato", sans-serif;
+}
+.option-contain-appareils input::placeholder {
+  font-size: large;
+  color: u.$light;
+  padding: 10px;
+  font-weight: 700;
+  opacity: 1;
+  font-family: "Lato", sans-serif;
+}
+.option-contain-ustensiles input::placeholder {
+  color: u.$light;
+  padding: 10px;
+  font-weight: 700;
+  opacity: 1;
+  font-family: "Lato", sans-serif;
+  font-size: large;
+}
+
+.option-contain {
+  padding: 10px 0;
+  margin: 0 0 40px 0;
+}
+.recipes-contain {
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 0 5% !important;
+  grid-template-columns: 30% 30% 30% !important;
+  grid-auto-rows: auto;
+}
+
+.recipes-article {
+  font-size: small;
+  line-height: 17px;
+  border-radius: 5px 5px 0px 0px;
+  margin: 30px auto;
+}
+
+.img-parent {
+  background-color: u.$greyDark;
+  margin: auto;
+  height: 170px;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.description-recipe {
+  margin: auto;
+  height: 200px;
+  overflow: hidden;
+  background-color: u.$greyLight;
+  padding: 20px 30px;
+  border-radius: 0 0 5px 5px;
+}
+
+.description-header {
+  font-size: medium;
+  padding-right: 30px!important;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 !important;
+  font-family: "Lato", sans-serif;
+}
+
+.header__time-contain {
+  font-size: large;
+  font-weight: 700;
+  text-align: end;
+  white-space: nowrap;
+  font-family: "Lato", sans-serif;
+}
+
+.time {
+
+}
+
+.body-description {
+  font-size: 10pt;
+}
+
+.body-ingredient {
+  height: 105px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.body-indication {
+  height: 105px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  font-family: "Roboto", sans-serif;
+}
+
+.ingredientsContain {
+  overflow: hidden;
+}
+.ingredient {
+  font-family: "Lato", sans-serif;
+  white-space: nowrap;
+  width: auto;
+  font-weight: 700;
+  margin: 0;
+  padding: 0 !important;
+}
+.quantity {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0 0 0 5px !important;
+}
+.unit {
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0 0 0 5px !important;
+}
+.recipes-contain__infos {
+  background-color: u.$greyDark;
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  position: fixed;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  height: 300px;
+  font-size: 34px;
+  font-weight: 700;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  z-index: 1;
+}
+.img-parent{
+  display : flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  opacity: 0.5;
+  object-fit: contain;
+  width: 50%;
+  height: 50%;
+  border-radius: 30px;
+}
