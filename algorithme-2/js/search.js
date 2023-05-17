@@ -5,7 +5,7 @@ import { caseFirstLetterNormalize } from './utilsfunction.js'
 
 export let allArticlesArrayUpdate = []
 
-// parcours les données recettes ou un tableau tags glissé en argument, le test avec un objet regex
+// parcours les données recettes ou un tableau tags placées en argument, le test avec un objet regex
 // et retourne uniquement les éléments qui ont répondu positivement au test: utilisé pour filtrer les recettes
 // ainsi que pour filtrer les tags présents dans les listes
 export function testMatchRegexText (word, text) {

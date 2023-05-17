@@ -5,7 +5,7 @@ import { caseFirstLetterNormalize } from './utilsfunction.js'
 
 export let allArticlesArrayUpdate = []
 
-// parcours les données recettes ou un tableau tags glissé en argument, le test avec un objet regex
+// parcours les données recettes ou un tableau tags placées en argument, le test avec un objet regex
 // et retourne uniquement les éléments qui ont répondu positivement au test: utilisé pour filtrer les recettes
 // ainsi que pour filtrer les tags présents dans les listes
 export function testMatchRegexText (word, text) {
@@ -52,9 +52,9 @@ export function trigDisplayArticlesFiltred (searchUser) {
       }
     })
     // le tableau précedent est remplacé par le nouveau tableau pushé des articles concordant avec les tags
-    if(arrayTagMatch.length === 0){
+    if (arrayTagMatch.length === 0) {
       emptyArray()
-    }else{ 
+    } else {
       allArticlesArrayUpdate = arrayTagMatch
       // le tableau est envoyé pour la construction des recettes dans le DOM
       createArticles(allArticlesArrayUpdate)
@@ -64,7 +64,7 @@ export function trigDisplayArticlesFiltred (searchUser) {
     // pour la construction des recettes dans le DOM
     // vérife si le tableau n'est pas vide pour lancer la fonction qui construit les balises sinon
     // en l'absence de recettes, appel la fonction du message à la place
-    (allArticlesArrayUpdate.length === 0?emptyArray():createArticles(allArticlesArrayUpdate))
+    (allArticlesArrayUpdate.length === 0 ? emptyArray() : createArticles(allArticlesArrayUpdate))
   }
 }
 
@@ -91,14 +91,14 @@ function createArticles (allArticlesArray) {
 }
 
 // quand le tableau dynamique des recettes est vide
-function emptyArray(){
+function emptyArray () {
   const allRecipes = document.querySelector('.recipes-contain')
   allRecipes.innerHTML = ''
   const infos = document.createElement('div')
   infos.setAttribute('class', 'recipes-contain__infos')
   // injecte dans la balise de la variable infos, un message pour l'utilisateur
   // dans le cas ou le tableau global des recettes serait vide
-    infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
-    // rajoute le message dans le dom
-    allRecipes.appendChild(infos)
+  infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
+  // rajoute le message dans le dom
+  allRecipes.appendChild(infos)
 }
