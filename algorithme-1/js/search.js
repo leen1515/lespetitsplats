@@ -8,9 +8,18 @@ export let allArticlesArrayUpdate = []
 // parcours les données recettes ou un tableau tags placées en argument, le test avec un objet regex
 // et retourne uniquement les éléments qui ont répondu positivement au test: utilisé pour filtrer les recettes
 // ainsi que pour filtrer les tags présents dans les listes
+export function testMatchRegexTextRecipes (word, text) {
+  const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
+  const filteredArticlesDatas = text.filter((data) => {
+    return (searchUser.test(JSON.stringify(data[1])) || searchUser.test(JSON.stringify(data[2])) || searchUser.test(JSON.stringify(data[4])))
+  })
+  return filteredArticlesDatas
+}
 export function testMatchRegexText (word, text) {
   const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
   const filteredArticlesDatas = text.filter((data) => { return (searchUser.test(JSON.stringify(data))) })
+  console.log('ee', filteredArticlesDatas)
+
   return filteredArticlesDatas
 }
 // test une recette et la test selon les tags sélectionnés par l'utilisateur.
@@ -38,7 +47,7 @@ export function matchRegexTagText (tagList, textRecipes) {
 export function trigDisplayArticlesFiltred (searchUser) {
   // au lancement de la fonction, stock dans une variable en premier lieu le tableau à portée globale :
   // "allArticlesArray" après avoir été filtré par les mots clés récupérés depuis la barre de recherche principal
-  allArticlesArrayUpdate = testMatchRegexText(searchUser, allArticlesArray)
+  allArticlesArrayUpdate = testMatchRegexTextRecipes(searchUser, allArticlesArray)
   const arrayTagMatch = []
   // verifie s'il y a des tags dans le tableau des tags selectionnés par l'utilisateur : allTags, puis lance la boucle
   // pour ajouter chaque element qui correspond aux tags venant du tableau filtré auparavant
