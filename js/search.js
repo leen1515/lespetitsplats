@@ -5,12 +5,21 @@ import { caseFirstLetterNormalize } from './utilsfunction.js'
 
 export let allArticlesArrayUpdate = []
 
-// parcours les données recettes ou un tableau tags glissé en argument, le test avec un objet regex
+// parcours les données recettes ou un tableau tags placées en argument, le test avec un objet regex
 // et retourne uniquement les éléments qui ont répondu positivement au test: utilisé pour filtrer les recettes
 // ainsi que pour filtrer les tags présents dans les listes
+export function testMatchRegexTextRecipes (word, text) {
+  const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
+  const filteredArticlesDatas = text.filter((data) => {
+    return (searchUser.test(JSON.stringify(data[1])) || searchUser.test(JSON.stringify(data[2])) || searchUser.test(JSON.stringify(data[4])))
+  })
+  return filteredArticlesDatas
+}
 export function testMatchRegexText (word, text) {
   const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
   const filteredArticlesDatas = text.filter((data) => { return (searchUser.test(JSON.stringify(data))) })
+  console.log('ee', filteredArticlesDatas)
+
   return filteredArticlesDatas
 }
 // test une recette et la test selon les tags sélectionnés par l'utilisateur.
@@ -38,7 +47,7 @@ export function matchRegexTagText (tagList, textRecipes) {
 export function trigDisplayArticlesFiltred (searchUser) {
   // au lancement de la fonction, stock dans une variable en premier lieu le tableau à portée globale :
   // "allArticlesArray" après avoir été filtré par les mots clés récupérés depuis la barre de recherche principal
-  allArticlesArrayUpdate = testMatchRegexText(searchUser, allArticlesArray)
+  allArticlesArrayUpdate = testMatchRegexTextRecipes(searchUser, allArticlesArray)
   const arrayTagMatch = []
   // verifie s'il y a des tags dans le tableau des tags selectionnés par l'utilisateur : allTags, puis lance la boucle
   // pour ajouter chaque element qui correspond aux tags venant du tableau filtré auparavant
@@ -52,15 +61,22 @@ export function trigDisplayArticlesFiltred (searchUser) {
       }
     })
     // le tableau précedent est remplacé par le nouveau tableau pushé des articles concordant avec les tags
-    allArticlesArrayUpdate = arrayTagMatch
-    // le tableau est envoyé pour la construction des recettes dans le DOM
-    createArticles(allArticlesArrayUpdate)
+    if (arrayTagMatch.length === 0) {
+      emptyArray()
+    } else {
+      allArticlesArrayUpdate = arrayTagMatch
+      // le tableau est envoyé pour la construction des recettes dans le DOM
+      createArticles(allArticlesArrayUpdate)
+    }
   } else {
     // et s'il y a zero tags selectionné, le tableau uniquement filtré par les mots clés est récupéré
     // pour la construction des recettes dans le DOM
-    createArticles(allArticlesArrayUpdate)
+    // vérife si le tableau n'est pas vide pour lancer la fonction qui construit les balises sinon
+    // en l'absence de recettes, appel la fonction du message à la place
+    (allArticlesArrayUpdate.length === 0 ? emptyArray() : createArticles(allArticlesArrayUpdate))
   }
 }
+
 // construit les recettes filtrés dans le DOM, ainsi, il n'y aura que des recettes respectant la contrainte qui
 // est affiché devant l'utilisateur
 function createArticles (allArticlesArray) {
@@ -81,17 +97,17 @@ function createArticles (allArticlesArray) {
     const cardsRecipes = new RecipesFactory(elementArticleUpdate[0], elementArticleUpdate[1], cardsIngredients, elementArticleUpdate[3], elementArticleUpdate[4]).cardsFactory()
     allRecipes.appendChild(cardsRecipes)
   })
+}
+
+// quand le tableau dynamique des recettes est vide
+function emptyArray () {
+  const allRecipes = document.querySelector('.recipes-contain')
+  allRecipes.innerHTML = ''
   const infos = document.createElement('div')
   infos.setAttribute('class', 'recipes-contain__infos')
   // injecte dans la balise de la variable infos, un message pour l'utilisateur
   // dans le cas ou le tableau global des recettes serait vide
-  if (allArticlesArray.length === 0) {
-    infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
-    // efface la valeur de l'input de la searchbar au bout de 5secondes
-    const searchBarInput = document.querySelector('#global-searchbar')
-    setTimeout(() => { searchBarInput.value = '' }, 5000)
-
-    // rajoute le message dans le dom
-    allRecipes.appendChild(infos)
-  }
+  infos.textContent = 'Aucune recette ne correspond à votre critère... vous pouvez chercher « tarte aux pommes », « poisson », etc...'
+  // rajoute le message dans le dom
+  allRecipes.appendChild(infos)
 }
