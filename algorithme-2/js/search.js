@@ -18,6 +18,13 @@ export function testMatchRegexTextRecipes (word, text) {
   }
   return filteredArticlesDatas
 }
+export function testMatchRegexText (word, text) {
+  const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
+  const filteredArticlesDatas = text.filter((data) => { return (searchUser.test(JSON.stringify(data))) })
+  console.log('ee', filteredArticlesDatas)
+
+  return filteredArticlesDatas
+}
 // test une recette et la test selon les tags sélectionnés par l'utilisateur.
 // cette fonction est appelée uniquement s'il y a des tags selectionnés.
 // elle apparait dans une boucle qui n'ajoute que la recette positive à un nouveau tableau
