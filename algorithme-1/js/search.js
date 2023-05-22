@@ -34,7 +34,11 @@ export function matchRegexTagText (tagList, textRecipes) {
   // à l'inverse, il enlève 1 à ce même tableau si faux
   tagList.forEach((tag) => {
     const tagUser = new RegExp(`${caseFirstLetterNormalize(tag)}`, 'gi');
-    (tagUser.test(JSON.stringify(textRecipes)) ? checkTest.push(1) : checkTest.splice(0, 1))
+    (tagUser.test(JSON.stringify(textRecipes[2])) ||// ingredients
+     tagUser.test(JSON.stringify(textRecipes[5])) || // appareil et [6] ustensils
+     tagUser.test(JSON.stringify(textRecipes[6]))
+      ? checkTest.push(1)
+      : checkTest.splice(0, 1))
   });
   // compte le tableau checkTest et le compare au nombre de tag selectionné, s'ils sont égaux,
   // cela veut dire que la recette correspond à tous les tags que l'utilisateur à coché, cela
