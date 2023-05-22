@@ -96,12 +96,12 @@ export function interactionTagListener () {
     }
   })
   const main = document.querySelector('.recipes-contain')
-  main.addEventListener('mouseover', () => {
+  main.addEventListener('click', () => {
     hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
     hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
     hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
   })
-  searchBarInput.addEventListener('mouseover', () => {
+  searchBarInput.addEventListener('click', () => {
     hideSectionTag(ingredientButtonActivation, 'ingredients', inputIngredientTag)
     hideSectionTag(applianceButtonActivation, 'appareils', inputAppliancesTag)
     hideSectionTag(ustensileButtonActivation, 'ustensiles', inputUstensilsTag)
