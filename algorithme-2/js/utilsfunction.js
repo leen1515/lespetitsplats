@@ -1,6 +1,6 @@
 // rend entre-autres, minuscule un texte et rend le premier mot de sa phrase en majuscule
 export function caseFirstLetterNormalize (letter) {
-  const letterLowerCase = letter.toLowerCase().trim().replaceAll(')', '').replaceAll('(', '')
+  const letterLowerCase = letter.toLowerCase().trim().split('(')[0]
   return (letterLowerCase + '').charAt(0).toUpperCase() + letterLowerCase.substr(1)
 }
 
