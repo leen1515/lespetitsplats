@@ -20,8 +20,7 @@ export function interactionSearchListener () {
     console.log(word)
     if (word.length >= 3) {
       trigDisplayArticlesFiltred(word)
-    }
-    if (word < 3) {
+    } else if (word < 3) {
       trigDisplayArticlesFiltred('')
     }
   })
