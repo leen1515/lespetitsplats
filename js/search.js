@@ -27,7 +27,7 @@ export function testMatchRegexText (word, text) {
 // test une recette et la test selon les tags sélectionnés par l'utilisateur.
 // cette fonction est appelée uniquement s'il y a des tags selectionnés.
 // elle apparait dans une boucle qui n'ajoute que la recette positive à un nouveau tableau
-export function matchRegexTagText (tagList, textRecipe) {
+export function matchRegexTagText (tagList, textRecipes) {
   // initialise un tableau pour compter le nombre de retour vrai par tag
   const checkTest = []
   // initialise une variable par défaut sur faux
@@ -36,7 +36,11 @@ export function matchRegexTagText (tagList, textRecipe) {
   // à l'inverse, il enlève 1 à ce même tableau si faux
   tagList.forEach((tag) => {
     const tagUser = new RegExp(`${caseFirstLetterNormalize(tag)}`, 'gi');
-    (tagUser.test(JSON.stringify(textRecipe)) ? checkTest.push(1) : checkTest.splice(0, 1))
+    (tagUser.test(JSON.stringify(textRecipes[2])) ||// ingredients
+    tagUser.test(JSON.stringify(textRecipes[5])) || // appareil et [6] ustensils
+    tagUser.test(JSON.stringify(textRecipes[6]))
+      ? checkTest.push(1)
+      : checkTest.splice(0, 1))
   }
   );
   // compte le tableau checkTest et le compare au nombre de tag selectionné, s'ils sont égaux,
