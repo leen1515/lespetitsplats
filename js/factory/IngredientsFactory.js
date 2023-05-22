@@ -17,7 +17,11 @@ export class IngredientsFactory {
     unit.setAttribute('class', 'unit col-auto align-self-start')
 
     ingredient.textContent = `${this.ingredient}`
-    quantity.textContent = `: ${this.quantity} `
+    if (this.quantity !== undefined) {
+      quantity.textContent = `: ${this.quantity} `
+    } else {
+      quantity.textContent = ''
+    }
     if (this.unit !== undefined) {
       unit.textContent = this.unit.replace('grammes', 'g')
     }
