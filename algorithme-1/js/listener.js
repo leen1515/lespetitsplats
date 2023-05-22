@@ -22,7 +22,7 @@ export function interactionSearchListener () {
       trigDisplayArticlesFiltred(word)
     }
     if (word < 3) {
-      trigDisplayArticlesFiltred(word)
+      trigDisplayArticlesFiltred('')
     }
   })
 
