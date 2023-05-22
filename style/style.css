@@ -15,8 +15,17 @@ header {
   margin-bottom: 20px;
 }
 
-.logo {
-  margin: auto;
+.header-logo-intro {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+}
+
+.logo-index-img {
+  width: 300px;
+  align-self: center;
 }
 
 .searchbar-contain {
@@ -239,7 +248,7 @@ header {
   font-size: small;
   line-height: 17px;
   border-radius: 5px 5px 0px 0px;
-  margin: 30px auto;
+  margin: 30px 5px;
 }
 
 .img-parent {

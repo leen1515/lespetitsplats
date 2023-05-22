@@ -17,7 +17,6 @@ export function interactionSearchListener () {
   trigDisplayArticlesFiltred('')
   searchBarInput.addEventListener('input', (e) => {
     const word = e.target.value
-    console.log(word)
     if (word.length >= 3) {
       trigDisplayArticlesFiltred(word)
     }
