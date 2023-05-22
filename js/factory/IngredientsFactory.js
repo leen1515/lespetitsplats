@@ -1,4 +1,3 @@
-import { caseFirstLetterNormalize } from './../utilsfunction.js'
 export class IngredientsFactory {
   constructor (ingredient, quantity, unit) {
     this.ingredient = ingredient
@@ -17,10 +16,10 @@ export class IngredientsFactory {
     quantity.setAttribute('class', 'quantity col-auto align-self-start')
     unit.setAttribute('class', 'unit col-auto align-self-start')
 
-    ingredient.textContent = `${caseFirstLetterNormalize(this.ingredient)}`
+    ingredient.textContent = `${this.ingredient}`
     quantity.textContent = `: ${this.quantity} `
     if (this.unit !== undefined) {
-      unit.textContent = this.unit
+      unit.textContent = this.unit.replace('grammes', 'g')
     }
 
     ingredients.appendChild(ingredient)
