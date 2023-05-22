@@ -19,9 +19,8 @@ export function interactionSearchListener () {
     const word = e.target.value
     if (word.length >= 3) {
       trigDisplayArticlesFiltred(word)
-    }
-    if (word < 3) {
-      trigDisplayArticlesFiltred(word)
+    } else if (word < 3) {
+      trigDisplayArticlesFiltred('')
     }
   })
 
