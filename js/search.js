@@ -21,7 +21,6 @@ export function testMatchRegexTextRecipes (word, text) {
 export function testMatchRegexText (word, text) {
   const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
   const filteredArticlesDatas = text.filter((data) => { return (searchUser.test(JSON.stringify(data))) })
-  console.log('ee', filteredArticlesDatas)
 
   return filteredArticlesDatas
 }
