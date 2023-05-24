@@ -90,7 +90,7 @@ export function interactionTagListener () {
 
   const searchBarInput = document.querySelector('#global-searchbar')
   document.addEventListener('click', (e) => {
-    if (e.target.getAttribute('name') === 'tags') {
+    if (e.target.getAttribute('name') === 'tags' || e.target.classList.contains('closeTag')) {
       updateDataDisplay('total')
     }
   })
@@ -110,19 +110,19 @@ export function interactionTagListener () {
 function updateDataDisplay (type, input) {
   switch (type) {
     case 'ingredients' :
-      (!input ? displaySectionTag(ingredientButtonActivation, type, inputIngredientTag) : console.log(input))
+      if (!input) {displaySectionTag(ingredientButtonActivation, type, inputIngredientTag)}
       trigDisplayArticlesFiltred(searchBarInput.value)
       if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
       (inputIngredientTag.value.length > 0 ? updateTag(inputIngredientTag.value, type, false) : updateTag(inputIngredientTag.value, type, true))
       break
     case 'appareils' :
-      (!input ? displaySectionTag(applianceButtonActivation, type, inputAppliancesTag) : console.log(input))
+      if(!input) {displaySectionTag(applianceButtonActivation, type, inputAppliancesTag)}
       trigDisplayArticlesFiltred(searchBarInput.value)
       if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
       (inputAppliancesTag.value.length > 0 ? updateTag(inputAppliancesTag.value, type, false) : updateTag(inputAppliancesTag.value, type, true))
       break
     case 'ustensiles':
-      (!input ? displaySectionTag(ustensileButtonActivation, type, inputUstensilsTag) : console.log(input))
+      if(!input){displaySectionTag(ustensileButtonActivation, type, inputUstensilsTag)}
       trigDisplayArticlesFiltred(searchBarInput.value)
       if (optionContain !== null) { optionContain.forEach((optionC) => { optionC.querySelector('.option').innerHTML = '' }) }
       (inputUstensilsTag.value.length > 0 ? updateTag(inputUstensilsTag.value, type, false) : updateTag(inputUstensilsTag.value, type, true))
