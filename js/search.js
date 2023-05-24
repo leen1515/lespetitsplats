@@ -12,7 +12,7 @@ export function testMatchRegexTextRecipes (word, text) {
   const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
   const filteredArticlesDatas = []
   for (let i = 0; i < text.length; i++) {
-    if (searchUser.test(JSON.stringify(text[i][1])) || searchUser.test(JSON.stringify(text[i][2])) || searchUser.test(JSON.stringify(text[i][4]))) {
+    if (searchUser.test(JSON.stringify(text[i].name)) || searchUser.test(JSON.stringify(text[i].description)) || searchUser.test(JSON.stringify(text[i].ingredients))) {
       filteredArticlesDatas.push(text[i])
     }
   }
@@ -37,9 +37,9 @@ export function matchRegexTagText (tagList, textRecipes) {
   // à l'inverse, il enlève 1 à ce même tableau si faux
   tagList.forEach((tag) => {
     const tagUser = new RegExp(`${caseFirstLetterNormalize(tag)}`, 'gi');
-    (tagUser.test(JSON.stringify(textRecipes[2])) ||// ingredients
-    tagUser.test(JSON.stringify(textRecipes[5])) || // appareil et [6] ustensils
-    tagUser.test(JSON.stringify(textRecipes[6]))
+    (tagUser.test(JSON.stringify(textRecipes.ingredients)) ||// ingredients
+    tagUser.test(JSON.stringify(textRecipes.appliance)) || // appareil et [6] ustensils
+    tagUser.test(JSON.stringify(textRecipes.ustensils))
       ? checkTest.push(1)
       : checkTest.splice(0, 1))
   }
@@ -98,11 +98,11 @@ function createArticles (allArticlesArrayFilter) {
 
     // pour chaque élement est bouclé la liste des recettes, les construit et les rajoute dans ce tableau
     // pour pouvoir être incorpéré au sein de la div recette qui sera construite
-    allArticlesArrayFilter[i][2].forEach((ingredientUnique) => {
+    allArticlesArrayFilter[i].ingredients.forEach((ingredientUnique) => {
       cardsIngredients.push(new IngredientsFactory(ingredientUnique.ingredient, ingredientUnique.quantity, ingredientUnique.unit).detailIngredients())
     })
     // construit la balise de chaque recette et l'ajoute dans le conteneur au sein du DOM
-    const cardsRecipes = new RecipesFactory(allArticlesArrayFilter[i][0], allArticlesArrayFilter[i][1], cardsIngredients, allArticlesArrayFilter[i][3], allArticlesArrayFilter[i][4]).cardsFactory()
+    const cardsRecipes = new RecipesFactory(allArticlesArrayFilter[i].id, allArticlesArrayFilter[i].name, cardsIngredients, allArticlesArrayFilter[i].time, allArticlesArrayFilter[i].description).cardsFactory()
     allRecipes.appendChild(cardsRecipes)
   }
 }
