@@ -12,7 +12,7 @@ export function appendChildTags (elementTag, idTag, tag) {
   if (tagContain.querySelector(`#${idTag}`) === null) {
     allTags.push(tag)
     const iconeCross = document.createElement('i')
-    iconeCross.setAttribute('class', 'fa-regular fa-circle-xmark fa-x-position')
+    iconeCross.setAttribute('class', 'fa-regular fa-circle-xmark fa-x-position closeTag')
     elementTag.appendChild(iconeCross)
     tagContain.appendChild(elementTag)
   }
