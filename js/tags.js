@@ -38,18 +38,18 @@ export function listTextTagContent (allArticlesArrayUpdate, type, order) {
   // la liste des ingrédients et les ajoute au tableau correspondant
   if (type === 'ingredients') {
     allArticlesArrayUpdate.forEach((articleArray) => {
-      articleArray[2].forEach((textIngredient) => {
+      articleArray.ingredients.forEach((textIngredient) => {
         arrayTextContentIngredients.push(caseFirstLetterNormalize(textIngredient.ingredient).replaceAll(/\d/g, '').replaceAll('Viande hachée % de matière grasse', 'Viande hachée'))
       }
       )
     })// pareil mais pour appareil
   } else if (type === 'appareils') {
     allArticlesArrayUpdate.forEach((articleArray) => {
-      arrayTextContentAppliances.push(caseFirstLetterNormalize(articleArray[5]).replaceAll(/\d/g, ''))
+      arrayTextContentAppliances.push(caseFirstLetterNormalize(articleArray.appliance).replaceAll(/\d/g, ''))
     })// pareil
   } else if (type === 'ustensiles') {
     allArticlesArrayUpdate.forEach((articleArray) => {
-      articleArray[6].forEach((textUstensils) => {
+      articleArray.ustensils.forEach((textUstensils) => {
         arrayTextContentUstensils.push(caseFirstLetterNormalize(textUstensils).replaceAll(/\d/g, ''))
       }
       )

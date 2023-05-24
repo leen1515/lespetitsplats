@@ -10,12 +10,9 @@ export let allArticlesArrayUpdate = []
 // ainsi que pour filtrer les tags présents dans les listes
 export function testMatchRegexTextRecipes (word, text) {
   const searchUser = new RegExp(`${caseFirstLetterNormalize(word)}`, 'gi')
-  const filteredArticlesDatas = []
-  for (let i = 0; i < text.length; i++) {
-    if (searchUser.test(JSON.stringify(text[i][1])) || searchUser.test(JSON.stringify(text[i][2])) || searchUser.test(JSON.stringify(text[i][4]))) {
-      filteredArticlesDatas.push(text[i])
-    }
-  }
+  const filteredArticlesDatas = text.filter((data) => {
+    return (searchUser.test(JSON.stringify(data.name)) || searchUser.test(JSON.stringify(data.description)) || searchUser.test(JSON.stringify(data.ingredients)))
+  })
   return filteredArticlesDatas
 }
 export function testMatchRegexText (word, text) {
@@ -36,13 +33,12 @@ export function matchRegexTagText (tagList, textRecipes) {
   // à l'inverse, il enlève 1 à ce même tableau si faux
   tagList.forEach((tag) => {
     const tagUser = new RegExp(`${caseFirstLetterNormalize(tag)}`, 'gi');
-    (tagUser.test(JSON.stringify(textRecipes[2])) ||// ingredients
-    tagUser.test(JSON.stringify(textRecipes[5])) || // appareil et [6] ustensils
-    tagUser.test(JSON.stringify(textRecipes[6]))
+    (tagUser.test(JSON.stringify(textRecipes.ingredients)) ||
+     tagUser.test(JSON.stringify(textRecipes.appliance)) || 
+     tagUser.test(JSON.stringify(textRecipes.ustensils))
       ? checkTest.push(1)
       : checkTest.splice(0, 1))
-  }
-  );
+  });
   // compte le tableau checkTest et le compare au nombre de tag selectionné, s'ils sont égaux,
   // cela veut dire que la recette correspond à tous les tags que l'utilisateur à coché, cela
   // retourne vrai et valide notre recette.
@@ -55,19 +51,19 @@ export function trigDisplayArticlesFiltred (searchUser) {
   // au lancement de la fonction, stock dans une variable en premier lieu le tableau à portée globale :
   // "allArticlesArray" après avoir été filtré par les mots clés récupérés depuis la barre de recherche principal
   allArticlesArrayUpdate = testMatchRegexTextRecipes(searchUser, allArticlesArray)
-
   const arrayTagMatch = []
   // verifie s'il y a des tags dans le tableau des tags selectionnés par l'utilisateur : allTags, puis lance la boucle
   // pour ajouter chaque element qui correspond aux tags venant du tableau filtré auparavant
   // dans un nouveau tableau : arrayTagMatch
   if (allTags.length > 0) {
-    for (let i = 0; i < allArticlesArrayUpdate.length; i++) {
+    allArticlesArrayUpdate.forEach((element) => {
       // la fonction ci-dessous est appelée pour verifier chaque element à chaque tag, ainsi,
       // est ajouté uniquement la recette passant le test avec succès au nouveau tableau.
-      if (matchRegexTagText(allTags, allArticlesArrayUpdate[i])) {
-        arrayTagMatch.push(allArticlesArrayUpdate[i])
+      if (matchRegexTagText(allTags, element)) {
+        arrayTagMatch.push(element)
       }
-    }
+    })
+    // le tableau précedent est remplacé par le nouveau tableau pushé des articles concordant avec les tags
     if (arrayTagMatch.length === 0) {
       emptyArray()
     } else {
@@ -83,27 +79,27 @@ export function trigDisplayArticlesFiltred (searchUser) {
     (allArticlesArrayUpdate.length === 0 ? emptyArray() : createArticles(allArticlesArrayUpdate))
   }
 }
+
 // construit les recettes filtrés dans le DOM, ainsi, il n'y aura que des recettes respectant la contrainte qui
 // est affiché devant l'utilisateur
-function createArticles (allArticlesArrayFilter) {
+function createArticles (allArticlesArray) {
   // recupère le conteneur des recettes dans le DOM
   const allRecipes = document.querySelector('.recipes-contain')
   // initialise le conteneur en le vidant afin d'accueillir les recettes correspondantes
   allRecipes.innerHTML = ''
   // boucle le tableau final pour lancer la construction des balises des recettes filtrées
-  for (let i = 0; i < allArticlesArrayFilter.length; i++) {
+  allArticlesArray.forEach((elementArticleUpdate) => {
     // un tableau vide pour récupérer les ingredients qui seront bouclés pour chaque recette
     const cardsIngredients = []
-
     // pour chaque élement est bouclé la liste des recettes, les construit et les rajoute dans ce tableau
     // pour pouvoir être incorpéré au sein de la div recette qui sera construite
-    allArticlesArrayFilter[i][2].forEach((ingredientUnique) => {
+    elementArticleUpdate.ingredients.forEach((ingredientUnique) => {
       cardsIngredients.push(new IngredientsFactory(ingredientUnique.ingredient, ingredientUnique.quantity, ingredientUnique.unit).detailIngredients())
     })
     // construit la balise de chaque recette et l'ajoute dans le conteneur au sein du DOM
-    const cardsRecipes = new RecipesFactory(allArticlesArrayFilter[i][0], allArticlesArrayFilter[i][1], cardsIngredients, allArticlesArrayFilter[i][3], allArticlesArrayFilter[i][4]).cardsFactory()
+    const cardsRecipes = new RecipesFactory(elementArticleUpdate.id, elementArticleUpdate.name, cardsIngredients, elementArticleUpdate.time, elementArticleUpdate.description).cardsFactory()
     allRecipes.appendChild(cardsRecipes)
-  }
+  })
 }
 
 // quand le tableau dynamique des recettes est vide
