@@ -90,7 +90,7 @@ export function interactionTagListener () {
 
   const searchBarInput = document.querySelector('#global-searchbar')
   document.addEventListener('click', (e) => {
-    if (e.target.getAttribute('name') === 'tags') {
+    if (e.target.getAttribute('name') === 'tags' || e.target.classList.contains('closeTag')) {
       updateDataDisplay('total')
     }
   })
